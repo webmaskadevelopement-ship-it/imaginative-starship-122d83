@@ -298,7 +298,22 @@
     constructor() {
       this.canvas = document.getElementById('protein-canvas');
       if (!this.canvas) return;
-      this.ctx = this.canvas.getContext('2d', { alpha: false });
+      // Use alpha: true to avoid Chromium/Edge initializing the backing buffer to solid black (#000000)
+      this.ctx = this.canvas.getContext('2d', { alpha: true });
+
+      // Hardware acceleration & GPU context loss recovery for Edge/Chromium
+      this.canvas.addEventListener('contextlost', (e) => {
+        e.preventDefault();
+        console.warn('[ProteinScroll] 2D canvas context lost in Chromium GPU process. Guarding against black screen.');
+      }, false);
+      this.canvas.addEventListener('contextrestored', () => {
+        console.info('[ProteinScroll] 2D canvas context restored.');
+        this.ctx = this.canvas.getContext('2d', { alpha: true });
+        this.resizeCanvas();
+        if (this.lastRenderedImage) {
+          this.renderTimeline(this.currentStep, true);
+        }
+      }, false);
 
       this.viewport = document.querySelector('.protein-viewport');
       this.section = document.getElementById('protein-scroll-section');
@@ -542,7 +557,12 @@
           this.loadedCount++;
           this.renderTimeline(0, true);
         };
-        if (firstImg.complete && firstImg.naturalWidth > 0) {
+        if ('decode' in firstImg) {
+          firstImg.decode().then(renderFirst).catch(() => {
+            if (firstImg.complete && firstImg.naturalWidth > 0) renderFirst();
+            else firstImg.onload = renderFirst;
+          });
+        } else if (firstImg.complete && firstImg.naturalWidth > 0) {
           renderFirst();
         } else {
           firstImg.onload = renderFirst;
@@ -593,7 +613,12 @@
         this.loadedCount++;
         this.renderTimeline(0, true);
       };
-      if (firstImg.complete && firstImg.naturalWidth > 0) {
+      if ('decode' in firstImg) {
+        firstImg.decode().then(renderFirst).catch(() => {
+          if (firstImg.complete && firstImg.naturalWidth > 0) renderFirst();
+          else firstImg.onload = renderFirst;
+        });
+      } else if (firstImg.complete && firstImg.naturalWidth > 0) {
         renderFirst();
       } else {
         firstImg.onload = renderFirst;
@@ -702,8 +727,21 @@
         }
       }
 
-      // Safe fallback: hold currently displayed image to avoid sudden visual flashes
-      return this.lastRenderedImage || this.images[0] || null;
+      // Safe fallback: hold currently displayed image, or default to entry frame (82 on desktop, 0 on mobile)
+      if (this.lastRenderedImage && this.lastRenderedImage.complete && this.lastRenderedImage.naturalWidth > 0) {
+        return this.lastRenderedImage;
+      }
+      const entryFrame = this.isDesktop ? this.images[82] : this.images[0];
+      if (entryFrame && entryFrame.complete && entryFrame.naturalWidth > 0) {
+        return entryFrame;
+      }
+      // Scan buffer for any valid frame rather than ever returning null / black
+      for (let i = 0; i < this.images.length; i++) {
+        if (this.images[i] && this.images[i].complete && this.images[i].naturalWidth > 0) {
+          return this.images[i];
+        }
+      }
+      return null;
     }
 
     getReadyLumaImage(targetIndex) {
@@ -777,11 +815,7 @@
 
       const dims = this.cachedDims;
 
-      // Clean background
-      this.ctx.fillStyle = '#090e0b';
-      this.ctx.fillRect(0, 0, dims.cw, dims.ch);
-
-      // Draw active frame
+      // Draw active frame directly over canvas — eliminates black flash gaps during frame transitions
       this.ctx.drawImage(img, dims.offsetX, dims.offsetY, dims.renderW, dims.renderH);
       this.lastRenderedImage = img;
     }
@@ -796,10 +830,6 @@
       if (!img) return;
 
       const dims = this.cachedDims;
-
-      this.ctx.fillStyle = '#090e0b';
-      this.ctx.fillRect(0, 0, dims.cw, dims.ch);
-
       this.ctx.drawImage(img, dims.offsetX, dims.offsetY, dims.renderW, dims.renderH);
       this.lastRenderedImage = img;
     }
@@ -832,9 +862,6 @@
       if (!img) return;
 
       const dims = this.cachedDims;
-      this.ctx.fillStyle = '#090e0b';
-      this.ctx.fillRect(0, 0, dims.cw, dims.ch);
-
       this.ctx.drawImage(img, dims.offsetX, dims.offsetY, dims.renderW, dims.renderH);
       this.lastRenderedImage = img;
     }
