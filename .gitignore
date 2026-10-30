@@ -1,0 +1,9 @@
+# OS & metadata files
+.DS_Store
+._*
+Thumbs.db
+
+# Temporary directories
+temp_overlays/
+node_modules/
+.netlify/

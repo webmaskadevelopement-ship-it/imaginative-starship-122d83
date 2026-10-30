@@ -85,7 +85,7 @@
    * Canvas now starts at Pea Isolate (frame 82). 5 chapters remain.
    * Scene centers re-calibrated for the new 933-step universe.
    */
-  const SCENE_CENTERS_16X9 = [0.0, 0.170, 0.420, 0.630, 0.910];
+  const SCENE_CENTERS_16X9 = [0.084, 0.285, 0.540, 0.800, 0.974];
 
   function getRemappedFrameProgress16x9(rawProgress) {
     for (let i = 0; i < SCENE_CENTERS_16X9.length - 1; i++) {
@@ -112,10 +112,10 @@
   // New total: 910 video frames (82..967 excluding 58) + 24 Hard Bloom = 933 steps (0..932)
   const SHOT_METADATA_16X9 = [
     { id: 1, name: "Canadian Yellow Pea Isolate", start: 82, end: 238, count: 157, subtitle: "Dew & Golden Pods", startProgress: 0.000 },
-    { id: 2, name: "Sprouted Brown Rice", start: 243, end: 498, count: 256, subtitle: "Hypoallergenic Matrix", startProgress: 0.170 },
-    { id: 3, name: "Cold-Pressed Pumpkin Seeds", start: 513, end: 668, count: 156, subtitle: "Mineral Harvest", startProgress: 0.463 },
-    { id: 4, name: "Madagascar Vanilla Orchid", start: 678, end: 932, count: 255, subtitle: "Pure Orchid Aromatics", startProgress: 0.642 },
-    { id: 5, name: "The New Me Protein", start: 942, end: 1014, count: 73, subtitle: "Clinical Packshot Formulation", startProgress: 0.914 },
+    { id: 2, name: "Sprouted Brown Rice", start: 243, end: 473, count: 231, subtitle: "Hypoallergenic Matrix", startProgress: 0.170 },
+    { id: 3, name: "Cold-Pressed Pumpkin Seeds", start: 526, end: 650, count: 125, subtitle: "Mineral Harvest", startProgress: 0.447 },
+    { id: 4, name: "Madagascar Vanilla Orchid", start: 684, end: 799, count: 116, subtitle: "Pure Orchid Aromatics", startProgress: 0.658 },
+    { id: 5, name: "The New Me Protein", start: 924, end: 1014, count: 91, subtitle: "Clinical Packshot Formulation", startProgress: 0.910 },
   ];
 
   const TOTAL_16X9_VIDEO_FRAMES = 968; // Frames 0..967 on disk
@@ -331,8 +331,11 @@
       this.nutritionCard = document.getElementById('proteinNutritionCard');
       this.nutritionScenePill = document.getElementById('nutritionScenePill');
       this.metricProteinVal = document.getElementById('metricProteinVal');
+      this.metricProteinLbl = document.getElementById('metricProteinLbl');
       this.metricBcaaVal = document.getElementById('metricBcaaVal');
+      this.metricBcaaLbl = document.getElementById('metricBcaaLbl');
       this.metricSugarVal = document.getElementById('metricSugarVal');
+      this.metricSugarLbl = document.getElementById('metricSugarLbl');
       this.nutritionCalloutText = document.getElementById('nutritionCalloutText');
 
       this.chapterIndexCard = document.getElementById('proteinChapterIndexCard');
@@ -1001,30 +1004,45 @@
         };
 
         if (self.isDesktop) {
-          // Recalibrated for 933-step timeline (Shot 1 removed, 5 chapters remain).
-          // Desktop maps onto DOM chapters 02-06 — chapter 01 (mobile-only Cloudscape) never shows.
-          // Chapter 02 (CANADIAN YELLOW PEA): Starts at canvas begin, fades before rice rows
-          addChapterAndDock(2, 0.000, 0.000, 0.130, 0.155, true);
+          // Strictly calibrated to 16:9 video frame boundaries:
+          // Chapter 02 (CANADIAN YELLOW PEA: frames 82..238 / steps 0..158 -> canvasP 0.000..0.162)
+          // Fades in as bloom dissolves into frame 82, holds through golden pods, fades out as rice rows arrive
+          addChapterAndDock(2, 0.010, 0.035, 0.155, 0.170);
 
-          // Chapter 03 (SPROUTED BROWN RICE): Fades in with rice rows, holds, fades before solar flare
-          addChapterAndDock(3, 0.170, 0.195, 0.400, 0.425);
+          // Chapter 03 (SPROUTED BROWN RICE: frames 243..473)
+          // Fades in with rice rows, holds across grain fields, stops strictly before the bloom at frame 473 (canvasP = 0.412)
+          addChapterAndDock(3, 0.170, 0.190, 0.380, 0.412);
 
-          // Chapter 04 (COLD-PRESSED PUMPKIN SEEDS): Fades in as flare clears
-          addChapterAndDock(4, 0.460, 0.485, 0.610, 0.635);
+          // Chapter 04 (COLD-PRESSED PUMPKIN SEEDS: frames 526..650)
+          // Fades in at frame 526 (canvasP = 0.447) as flare clears, holds, stops strictly at frame 650 (canvasP = 0.638)
+          addChapterAndDock(4, 0.447, 0.468, 0.612, 0.638);
 
-          // Chapter 05 (MADAGASCAR VANILLA ORCHID): Cloud orchid entrance
-          addChapterAndDock(5, 0.645, 0.670, 0.860, 0.885);
+          // Chapter 05 (MADAGASCAR VANILLA ORCHID: frames 684..799)
+          // Fades in strictly at frame 684 (canvasP = 0.658), holds through floral petals, ends strictly at frame 799 (canvasP = 0.771)
+          addChapterAndDock(5, 0.658, 0.678, 0.750, 0.771);
 
-          // Chapter 06 (THE NEW ME PROTEIN): Island packshot, holds to 1.000
-          addChapterAndDock(6, 0.910, 0.935);
+          // Chapter 06 (THE NEW ME PROTEIN: frames 924..967 / steps 866..932 -> canvasP 0.910..1.000)
+          // Fades in strictly when packshot arrives on screen at frame 924 (canvasP = 0.910), holds through finale
+          addChapterAndDock(6, 0.910, 0.930);
         } else {
-          // Chapter 01: THE NEW ME EXPERIENCE (0% to 9% full opacity, 9% to 12% fade out)
-          addChapterAndDock(1, 0.0, 0.0, 0.09, 0.12, true);
-          addChapterAndDock(2, 0.13, 0.15, 0.25, 0.27);
-          addChapterAndDock(3, 0.28, 0.30, 0.41, 0.43);
-          addChapterAndDock(4, 0.47, 0.49, 0.59, 0.61);
-          addChapterAndDock(5, 0.65, 0.67, 0.79, 0.81);
-          addChapterAndDock(6, 0.90, 0.93);
+          // Strictly calibrated to 9:16 mobile video frame boundaries requested by user:
+          // Chapter 01 (THE NEW ME EXPERIENCE: frames 000..024 -> progress 0.000..0.065)
+          addChapterAndDock(1, 0.000, 0.000, 0.048, 0.065, true);
+
+          // Chapter 02 (CANADIAN YELLOW PEA: frames 042..115 -> progress 0.083..0.254)
+          addChapterAndDock(2, 0.083, 0.100, 0.235, 0.254);
+
+          // Chapter 03 (SPROUTED BROWN RICE: frames 130..286 -> progress 0.276..0.422)
+          addChapterAndDock(3, 0.276, 0.295, 0.405, 0.422);
+
+          // Chapter 04 (COLD-PRESSED PUMPKIN SEEDS: frames 309..348 -> progress 0.489..0.636)
+          addChapterAndDock(4, 0.489, 0.510, 0.615, 0.636);
+
+          // Chapter 05 (VANILLA & PREBIOTIC FIBRE: frames 368..446 -> progress 0.652..0.826)
+          addChapterAndDock(5, 0.652, 0.672, 0.805, 0.826);
+
+          // Chapter 06 (THE NEW ME PROTEIN: frames 514..526 -> progress 0.945..1.000)
+          addChapterAndDock(6, 0.945, 0.965);
         }
 
         return () => {
@@ -1093,8 +1111,8 @@
       let idleTimer = null;
       let isProgrammaticNudge = false;
       const SCENE_STOPS = this.isDesktop
-        ? [0.055, 0.235, 0.545, 0.765, 0.945].map(unifiedProgress) // canvas stops mapped onto the unified pin
-        : [0.0, 0.20, 0.35, 0.54, 0.73, 1.0];
+        ? [0.084, 0.285, 0.540, 0.715, 0.955].map(unifiedProgress) // canvas visual peaks mapped onto unified pin
+        : [0.035, 0.165, 0.350, 0.560, 0.740, 0.970];
       const SAFE_TEXT_ZONE_RADIUS = 0.04; // Tighter: forces snap sooner after leaving a chapter
 
       const isChapterTextOnScreen = () =>
@@ -1195,12 +1213,23 @@
       // Update Dual White Card Overlays — desktop 5-chapter canvas only.
       // (Cards are display:none on mobile; the 9:16 engine keeps its own specimen dock.)
       if (this.isDesktop && (this.chapterIndexCard || this.nutritionCard)) {
+        // Fade white cards out during the packshot hero expansion, fade in as canvas video begins
+        const cardOpacity = progress < HERO_PHASE_FRACTION ? 0 : 1;
+        if (this.chapterIndexCard && this.chapterIndexCard.style.opacity !== String(cardOpacity)) {
+          this.chapterIndexCard.style.opacity = String(cardOpacity);
+          this.chapterIndexCard.style.pointerEvents = cardOpacity === 1 ? 'auto' : 'none';
+        }
+        if (this.nutritionCard && this.nutritionCard.style.opacity !== String(cardOpacity)) {
+          this.nutritionCard.style.opacity = String(cardOpacity);
+          this.nutritionCard.style.pointerEvents = cardOpacity === 1 ? 'auto' : 'none';
+        }
+
         // Thresholds are canvas-phase values — the unified pin prepends the packshot phase
         const uT = (v) => unifiedProgress(v);
         let activeShot = 1;
         if (progress >= uT(0.910)) activeShot = 5;
-        else if (progress >= uT(0.645)) activeShot = 4;
-        else if (progress >= uT(0.460)) activeShot = 3;
+        else if (progress >= uT(0.658)) activeShot = 4;
+        else if (progress >= uT(0.447)) activeShot = 3;
         else if (progress >= uT(0.170)) activeShot = 2;
 
         if (this.lastActiveShot !== activeShot) {
@@ -1210,56 +1239,71 @@
               shot: 1,
               badge: "01",
               title: "CANADIAN YELLOW PEA",
-              subline: "Naturally fermented for zero bloat.",
-              pill: "FERMENTED ISOLATE",
-              protein: "80%",
-              bcaa: "98%",
+              subline: "Builds muscle. Zero bloat.",
+              pill: "HYPOALLERGENIC ISOLATE",
+              protein: "18.8g",
+              proteinLbl: "PLANT PROTEIN",
+              bcaa: "All 9",
+              bcaaLbl: "ESSENTIAL AMINOS",
               sugar: "0g",
-              callout: "Slow water-extracted to eliminate oligosaccharides and lectins, yielding 98% bioavailability without digestive friction."
+              sugarLbl: "ADDED SUGAR",
+              callout: "High-quality plant protein that helps build and repair lean muscles. Water-extracted to remove lectins — hypoallergenic and easy to digest."
             },
             {
               shot: 2,
               badge: "02",
               title: "SPROUTED BROWN RICE",
-              subline: "Complete essential amino matrix.",
+              subline: "Sustains energy all day.",
               pill: "BIO-SPROUTED",
-              protein: "24g",
-              bcaa: "4.8g",
+              protein: "18.8g",
+              proteinLbl: "PLANT PROTEIN",
+              bcaa: "All 9",
+              bcaaLbl: "ESSENTIAL AMINOS",
               sugar: "0g",
-              callout: "Enzymatically germinated prior to extraction to unlock sulfur-rich aminos, creating a complete biological score equal to whey."
+              sugarLbl: "ADDED SUGAR",
+              callout: "Complete protein source that supports energy and overall health. Sprouted before extraction to unlock all 9 essential amino acids."
             },
             {
               shot: 3,
               badge: "03",
               title: "COLD-PRESSED PUMPKIN SEEDS",
-              subline: "Native zinc & metabolic magnesium power.",
-              pill: "AUSTRIAN HARVEST",
-              protein: "280mg",
-              bcaa: "4.8mg",
+              subline: "Vitality & immunity support.",
+              pill: "COLD-PRESSED",
+              protein: "Zinc",
+              proteinLbl: "NATIVE MINERALS",
+              bcaa: "Magnesium",
+              bcaaLbl: "CELLULAR SUPPORT",
               sugar: "0g",
-              callout: "Cold-expeller pressed without chemical solvents, supplying native zinc and magnesium for cellular enzyme restoration."
+              sugarLbl: "ADDED SUGAR",
+              callout: "Rich in essential minerals and healthy fats to support vitality and immunity. Cold-pressed without solvents for native zinc and magnesium."
             },
             {
               shot: 4,
               badge: "04",
-              title: "MADAGASCAR VANILLA ORCHID",
-              subline: "Pure cured Madagascar Planifolia aromatics.",
-              pill: "100% REAL BEAN",
-              protein: "24g",
-              bcaa: "Prebiotic",
+              title: "VANILLA & PREBIOTIC FIBRE",
+              subline: "Gut health & energy boost.",
+              pill: "PREBIOTIC FIBRE",
+              protein: "4.8g",
+              proteinLbl: "PREBIOTIC FIBRE",
+              bcaa: "Vit B12",
+              bcaaLbl: "ENERGY & NERVES",
               sugar: "0g",
-              callout: "Sun-cured Planifolia orchid aromatics harmonized with Belgian chicory inulin and bioactive methylcobalamin B12."
+              sugarLbl: "ADDED SUGAR",
+              callout: "Real Madagascar vanilla. 4.8g prebiotic fibre per scoop supports gut health and digestion. Vitamin B12 for energy production, metabolism and nerve function."
             },
             {
               shot: 5,
               badge: "05",
               title: "THE NEW ME PROTEIN",
-              subline: "24g bio-protein, zero bloat formulation.",
-              pill: "CLINICAL STANDARD",
-              protein: "24g",
-              bcaa: "5.2g",
+              subline: "18.8g protein per scoop.",
+              pill: "VEGAN CERTIFIED",
+              protein: "18.8g",
+              proteinLbl: "PLANT PROTEIN",
+              bcaa: "4.8g",
+              bcaaLbl: "PREBIOTIC FIBRE",
               sugar: "0g",
-              callout: "Harmonized with pure Belgian chicory inulin prebiotic fiber and active methylcobalamin B12 for continuous cellular repair."
+              sugarLbl: "ADDED SUGAR",
+              callout: "18.8g plant protein · 4.8g prebiotic fibre · All 9 essential amino acids · Vitamin B12 · Zero added sugar. No soy. No gluten. Vegan Australia Certified."
             }
           ];
 
@@ -1270,8 +1314,11 @@
 
           if (this.nutritionScenePill) this.nutritionScenePill.textContent = data.pill;
           if (this.metricProteinVal) this.metricProteinVal.textContent = data.protein;
+          if (this.metricProteinLbl && data.proteinLbl) this.metricProteinLbl.textContent = data.proteinLbl;
           if (this.metricBcaaVal) this.metricBcaaVal.textContent = data.bcaa;
+          if (this.metricBcaaLbl && data.bcaaLbl) this.metricBcaaLbl.textContent = data.bcaaLbl;
           if (this.metricSugarVal) this.metricSugarVal.textContent = data.sugar;
+          if (this.metricSugarLbl && data.sugarLbl) this.metricSugarLbl.textContent = data.sugarLbl;
           if (this.nutritionCalloutText) this.nutritionCalloutText.textContent = data.callout;
 
           if (this.chapterDots && this.chapterDots.length > 0) {
@@ -1292,18 +1339,20 @@
       if (chips && chips.length > 0) {
         let activeIdx = 1;
         if (this.isDesktop) {
-          // 5-chapter 933-step universe — dock chips light up 02-06 (pea through packshot)
+          // 5-chapter 933-step universe — dock chips light up 02-06
           activeIdx = 2;
-          if (progress >= 0.910) activeIdx = 6;
-          else if (progress >= 0.645) activeIdx = 5;
-          else if (progress >= 0.460) activeIdx = 4;
-          else if (progress >= 0.170) activeIdx = 3;
+          if (progress >= unifiedProgress(0.910)) activeIdx = 6;
+          else if (progress >= unifiedProgress(0.658)) activeIdx = 5;
+          else if (progress >= unifiedProgress(0.447)) activeIdx = 4;
+          else if (progress >= unifiedProgress(0.170)) activeIdx = 3;
         } else {
-          if (progress >= 0.88) activeIdx = 6;
-          else if (progress >= 0.63) activeIdx = 5;
-          else if (progress >= 0.44) activeIdx = 4;
-          else if (progress >= 0.26) activeIdx = 3;
-          else if (progress >= 0.11) activeIdx = 2;
+          // Mobile 6-chapter sequence strictly matched to requested frames:
+          if (progress >= 0.945) activeIdx = 6;
+          else if (progress >= 0.652) activeIdx = 5;
+          else if (progress >= 0.489) activeIdx = 4;
+          else if (progress >= 0.276) activeIdx = 3;
+          else if (progress >= 0.083) activeIdx = 2;
+          else activeIdx = 1;
         }
 
         chips.forEach((chip) => {
@@ -1336,12 +1385,12 @@
     initChapterBarNav() {
       if (!this.chapterDots || this.chapterDots.length === 0) return;
       const SHOT_SEEK_PROGRESS = {
-        // canvas-phase stops mapped onto the unified pin (desktop-only chapter card)
-        1: unifiedProgress(0.055), // Canadian Yellow Pea Isolate (canvas opening hold)
-        2: unifiedProgress(0.235), // Sprouted Brown Rice
-        3: unifiedProgress(0.545), // Cold-Pressed Pumpkin Seeds
-        4: unifiedProgress(0.765), // Madagascar Vanilla Orchid
-        5: unifiedProgress(0.945)  // The New Me Protein Packshot Finale
+        // canvas-phase visual peak stops mapped onto the unified pin (desktop-only chapter card)
+        1: unifiedProgress(0.084), // Canadian Yellow Pea Isolate (canvas opening hold)
+        2: unifiedProgress(0.285), // Sprouted Brown Rice (stops before bloom frame 473)
+        3: unifiedProgress(0.540), // Cold-Pressed Pumpkin Seeds (frame 526..650)
+        4: unifiedProgress(0.715), // Madagascar Vanilla Orchid (frame 684..799)
+        5: unifiedProgress(0.955)  // The New Me Protein Packshot Finale (frame 924..967)
       };
 
       this.chapterDots.forEach(dot => {
