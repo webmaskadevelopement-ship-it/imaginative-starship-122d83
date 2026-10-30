@@ -1,0 +1,11 @@
+# Netlify URL Rewrites & Aliases
+/protein              /protein-powder.html  200
+/protein-powder       /protein-powder.html  200
+/protein.html         /protein-powder.html  200
+/protien              /protein-powder.html  200
+/protien-powder       /protein-powder.html  200
+/protien.html         /protein-powder.html  200
+/protien-powder.html  /protein-powder.html  200
+/about                /about.html           200
+/blog                 /blog.html            200
+/contact              /contact.html         200

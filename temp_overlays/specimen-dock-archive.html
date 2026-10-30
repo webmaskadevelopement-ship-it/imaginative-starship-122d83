@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!--
+  THE NEW ME (TNM) - PINNED EDITORIAL SPECIMEN DOCK ARCHIVE & BACKUP
+  ===================================================================
+  Date Archived: 2026-10-28
+  Purpose: Preserves the complete 100% opaque lower rectangular section containing:
+           1. Six dynamic botanical specimen panels (Identity, Subheadlines, Clinical narrative, Spec pills)
+           2. Swiss Telemetry Wing HUD (Percentage counter, progress bar, 6 step chips)
+           3. Complete CSS layout and animation tokens
+           4. GSAP / JavaScript controller snippet to reinstate instantly.
+
+  To Restore into protein.html / protein-powder.html:
+  1. Paste the HTML section below into #proteinScrollExperience, right below the .protein-editorial-overlay container.
+  2. Ensure the CSS rules below are present in protein-scroll.css.
+  3. Re-enable updateEditorialDock(progress) in protein-scroll.js.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Specimen Dock Archive & Restoration Source</title>
+</head>
+<body>
+
+<!-- ======================================================================
+     07. PINNED EDITORIAL SPECIMEN DOCK (100% Opaque Lower Rectangular Section & Telemetry)
+     ====================================================================== -->
+<div class="protein-specimen-dock" id="proteinSpecimenDock" aria-live="polite" role="region" aria-label="Active Botanical Formulation">
+    <div class="dock-inner-container">
+        <!-- Dynamic Specimen Panels (6 Chapters) -->
+        <div class="dock-panels-wrapper">
+            <!-- Panel 01: The New Me Experience -->
+            <div class="dock-panel is-active" data-dock="1">
+                <div class="dock-identity-col">
+                    <span class="dock-kicker">
+                        <span class="dock-kicker-dot"></span>
+                        Phyto-Nutrition System
+                    </span>
+                    <h3 class="dock-subheadline">Pure botanical cellular harmony.</h3>
+                </div>
+                <div class="dock-narrative-col">
+                    <p class="dock-benefit-text">
+                        Complete tri-plant protein architecture engineered for continuous cellular repair, effortless gastric transit, and linear daily energy. Fortified with cold-extracted botanical micronutrients and prebiotic fibers to nourish gut microbiome diversity without digestive friction.
+                    </p>
+                    <div class="dock-spec-pills">
+                        <span class="dock-pill">24g Bio-Protein</span>
+                        <span class="dock-pill">Complete Aminos</span>
+                        <span class="dock-pill">Zero Bloat</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 02: Golden Pea Isolate -->
+            <div class="dock-panel" data-dock="2">
+                <div class="dock-identity-col">
+                    <span class="dock-kicker">
+                        <span class="dock-kicker-dot"></span>
+                        Canadian Yellow Pea Isolate
+                    </span>
+                    <h3 class="dock-subheadline">Naturally fermented for zero digestive bloat.</h3>
+                </div>
+                <div class="dock-narrative-col">
+                    <p class="dock-benefit-text">
+                        Slow water-extracted to systematically strip away oligosaccharides and lectins that cause common stomach bloat. Yields an 80% pure hypoallergenic protein isolate with exceptional 98% bioavailability, supporting smooth muscle synthesis and rapid post-workout recovery.
+                    </p>
+                    <div class="dock-spec-pills">
+                        <span class="dock-pill">Hypoallergenic</span>
+                        <span class="dock-pill">98% Digestibility</span>
+                        <span class="dock-pill">Alkaline Washed</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 03: Sprouted Brown Rice -->
+            <div class="dock-panel" data-dock="3">
+                <div class="dock-identity-col">
+                    <span class="dock-kicker">
+                        <span class="dock-kicker-dot"></span>
+                        Enzymatically Sprouted Grain
+                    </span>
+                    <h3 class="dock-subheadline">Complete essential amino acid matrix.</h3>
+                </div>
+                <div class="dock-narrative-col">
+                    <p class="dock-benefit-text">
+                        Bio-germinated prior to low-heat extraction to unlock vital sulfur-rich amino acids, balancing yellow pea to achieve a 1.0 PDCAAS score equivalent to whey. Delivers naturally dense BCAAs for steady muscular replenishment and smooth physical endurance without dairy allergens.
+                    </p>
+                    <div class="dock-spec-pills">
+                        <span class="dock-pill">Bio-Sprouted</span>
+                        <span class="dock-pill">High Methionine</span>
+                        <span class="dock-pill">Silky Texture</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 04: Cold-Pressed Pumpkin Seeds -->
+            <div class="dock-panel" data-dock="4">
+                <div class="dock-identity-col">
+                    <span class="dock-kicker">
+                        <span class="dock-kicker-dot"></span>
+                        Cold-Pressed Austrian Seeds
+                    </span>
+                    <h3 class="dock-subheadline">Native zinc &amp; metabolic magnesium power.</h3>
+                </div>
+                <div class="dock-narrative-col">
+                    <p class="dock-benefit-text">
+                        Expeller-pressed without synthetic chemical solvents to preserve bio-active minerals, plant sterols, and natural chlorophyll. Supplies bio-available zinc and magnesium to stimulate enzyme synthesis, stabilize restorative sleep cycles, and promote steady cellular repair.
+                    </p>
+                    <div class="dock-spec-pills">
+                        <span class="dock-pill">High Zinc &amp; Magnesium</span>
+                        <span class="dock-pill">Cold-Expelled</span>
+                        <span class="dock-pill">Clean Lipid Matrix</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 05: Orchid Benefits (Vanilla Planifolia) -->
+            <div class="dock-panel" data-dock="5">
+                <div class="dock-identity-col">
+                    <span class="dock-kicker">
+                        <span class="dock-kicker-dot"></span>
+                        Madagascar Planifolia Orchid
+                    </span>
+                    <h3 class="dock-subheadline">Pure cured Madagascar Planifolia aromatics.</h3>
+                </div>
+                <div class="dock-narrative-col">
+                    <p class="dock-benefit-text">
+                        Hand-pollinated and traditionally sun-cured over several months to concentrate genuine vanillin, glucovanillin, and gentle phenolic antioxidants. Completely devoid of synthetic chemical flavorings, offering an authentic velvety botanical finish that elevates daily compliance.
+                    </p>
+                    <div class="dock-spec-pills">
+                        <span class="dock-pill">100% Real Bean</span>
+                        <span class="dock-pill">Zero Synthetics</span>
+                        <span class="dock-pill">Natural Terpenes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 06: The New Me Protein Formulation -->
+            <div class="dock-panel" data-dock="6">
+                <div class="dock-identity-col">
+                    <span class="dock-kicker">
+                        <span class="dock-kicker-dot"></span>
+                        Clinical Botanical Standard
+                    </span>
+                    <h3 class="dock-subheadline">24g bio-protein &middot; zero bloat formulation.</h3>
+                </div>
+                <div class="dock-narrative-col">
+                    <p class="dock-benefit-text">
+                        Harmonized with pure Belgian chicory inulin prebiotic fiber and active methylcobalamin B12 to optimize intestinal flora and metabolic conversion. Pure bioavailable fuel designed for effortless daily assimilation, sustained focus, and lasting cellular longevity.
+                    </p>
+                    <div class="dock-spec-pills">
+                        <span class="dock-pill">24g Net Yield</span>
+                        <span class="dock-pill">Prebiotic Inulin</span>
+                        <span class="dock-pill">Bioactive B12</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Integrated Swiss Telemetry HUD -->
+        <div class="dock-telemetry-wing" id="proteinTelemetry" aria-label="Scroll Progress">
+            <div class="dock-telemetry-meta">
+                <span class="dock-telemetry-label">DISCOVERY</span>
+                <span class="dock-percentage" id="telemetryVal">0%</span>
+            </div>
+            <div class="dock-progress-track" aria-hidden="true">
+                <div class="dock-progress-fill" id="telemetryFill"></div>
+            </div>
+            <div class="dock-step-chips">
+                <span class="dock-chip active" data-chip="1">01</span>
+                <span class="dock-chip" data-chip="2">02</span>
+                <span class="dock-chip" data-chip="3">03</span>
+                <span class="dock-chip" data-chip="4">04</span>
+                <span class="dock-chip" data-chip="5">05</span>
+                <span class="dock-chip" data-chip="6">06</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

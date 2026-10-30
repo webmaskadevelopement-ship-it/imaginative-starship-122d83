@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The New Me - Reverse Aging & Rebuild Health</title>
+    <meta name="description" content="Practical science. Real habits. A longer, healthier, happier you. Discover The New Me 2.0 guide to reverse aging.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Favicon & Brand Icons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    
+    <link rel="stylesheet" href="style.css?v=navbar_sticky">
+</head>
+<body>
+    <!-- 00. REACT BITS FLUID GLASS FILL LOADER (Water Glass Rising Fluid & Bloom Dissolve) -->
+    <div id="proteinLoader" class="protein-wave-loader" aria-live="polite" role="status">
+        <!-- BASE WHITE STAGE (Stage 1: Pure White Canvas + Official Brand Heart) -->
+        <div class="loader-glass-stage">
+            <div class="loader-stage-inner">
+                <!-- Official New Me Brand Heart Emblem (Dark Brand Green on White Stage) -->
+                <div class="loader-brand-lens">
+                    <img src="DATA/The New Me Heart Logo.webp" alt="The New Me" class="loader-brand-logo logo-dark" width="140" height="120">
+                </div>
+            </div>
+        </div>
+
+        <!-- REACT BITS HARMONIC FLUID WAVE CANVAS (Stage 2: Rising Liquid Waves) -->
+        <canvas id="loaderWaveCanvas" class="loader-wave-canvas"></canvas>
+
+        <!-- LIQUID SUBMERGED REVEALED LAYER (Masked dynamically to water level) -->
+        <div class="loader-revealed-layer" id="loaderRevealedLayer">
+            <div class="loader-stage-inner loader-revealed-inner">
+                <!-- Official New Me Brand Heart Emblem in Brand Green (#2B4D1F) -->
+                <div class="loader-brand-lens">
+                    <img src="DATA/The New Me Heart Logo.webp" alt="The New Me" class="loader-brand-logo logo-dark" width="140" height="120">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Header -->
+        <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo" aria-label="The New Me Home">
+                <img fetchpriority="high" decoding="sync" src="DATA/NAV BAR/heart logo.webp" alt="Heart Logo" class="logo-heart">
+                <img fetchpriority="high" decoding="sync" src="DATA/NAV BAR/Logo top text.webp" alt="the new me" class="logo-text-img">
+            </a>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="https://www.amazon.in/dp/9364115511/" target="_blank" rel="noopener noreferrer" class="nav-link">The Book</a>
+                <a href="protein-powder.html" class="nav-link">Protein Powder</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn js-open-search" aria-label="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+                <button class="icon-btn cart-btn" aria-label="Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <span class="cart-badge">0</span>
+                </button>
+                <a href="https://www.amazon.in/dp/9364115511/" target="_blank" rel="noopener noreferrer" class="btn btn-primary header-cta-desktop">Get The Book</a>
+            </div>
+            <!-- Mobile Hamburger -->
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer-backdrop" id="drawerBackdrop"></div>
+    <nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-header">
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <div class="drawer-links">
+            <a href="index.html" class="drawer-link active">Home</a>
+            <a href="about.html" class="drawer-link">About</a>
+            <a href="https://www.amazon.in/dp/9364115511/" target="_blank" rel="noopener noreferrer" class="drawer-link">The Book</a>
+            <a href="protein-powder.html" class="drawer-link">Protein Powder</a>
+            <a href="blog.html" class="drawer-link">Blog</a>
+            <a href="contact.html" class="drawer-link">Contact</a>
+        </div>
+        <form class="drawer-search" action="https://ilovenewme.com/" method="GET">
+            <input type="text" name="s" placeholder="Search articles..." class="drawer-search-input">
+        </form>
+        <div class="drawer-cta">
+            <a href="https://www.amazon.in/dp/9364115511/" target="_blank" rel="noopener noreferrer" class="btn btn-primary drawer-cta-btn">Get The Book</a>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Desktop hero image -->
+        <img fetchpriority="high" decoding="sync" src="DATA/Author Images/Studio Portrait of Character  Image1 , Image2 , Image3 wearing a black T shirt seated at a polished.webp" alt="Gagan Dhawan with The New Me 2.0 Book" class="hero-bg hero-bg-desktop">
+        <img fetchpriority="high" decoding="sync" src="DATA/signature.webp" alt="Signature" class="hero-signature hero-signature-desktop">
+        
+        <div class="hero-content-right">
+            <h1 class="hero-heading-right">Build a Better You</h1>
+            <p class="hero-subheading-right">REAL HABITS . PRACTICAL SCIENCE .REVERSE AGING</p>
+            <div class="hero-actions-right">
+                <a href="https://www.amazon.in/dp/9364115511/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get Your Copy</a>
+                <img fetchpriority="high" decoding="sync" src="DATA/Now Available On.webp" alt="Now Available On Amazon" class="hero-amazon-logo">
+            </div>
+        </div>
+
+        <!-- Mobile hero layout (hidden on desktop) -->
+        <div class="hero-mobile">
+            <div class="hero-mobile-image-wrap">
+                <img fetchpriority="high" decoding="sync" src="DATA/Author Images/mobile_hero.webp" alt="Gagan Dhawan with The New Me 2.0 Book" class="hero-mobile-img">
+                <img fetchpriority="high" decoding="sync" src="DATA/signature.webp" alt="Signature" class="hero-signature-mobile">
+            </div>
+            <div class="hero-mobile-text-section">
+                <h1 class="hero-mobile-heading">Build a Better You</h1>
+                <p class="hero-mobile-sub">REAL HABITS . PRACTICAL SCIENCE .REVERSE AGING</p>
+                <div class="hero-mobile-cta-stack">
+                    <a href="https://www.amazon.in/dp/9364115511/" target="_blank" rel="noopener noreferrer" class="btn btn-primary hero-mobile-btn">Get The Book</a>
+                    <button class="btn btn-outline hero-mobile-btn-secondary js-open-video" data-url="https://www.instagram.com/reel/Dc1KAmZTAzX/embed/" data-type="vertical">See What's Inside</button>
+                </div>
+                <div class="hero-mobile-amazon-wrap">
+                    <img loading="lazy" src="DATA/Now Available On.webp" alt="Available On Amazon" class="hero-mobile-amazon">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Quote 1 -->
+    <section class="quote-section">
+        <div class="container quote-container">
+            <div class="quote-inner">
+                <h2 class="quote-text">"Ageing is inevitable.<br>Decline is optional."</h2>
+                <div class="quote-author">GAGAN DHAWAN</div>
+            </div>
+            <div class="quote-side-text">
+                <p>The New Me is more than a book.<br>It's a movement towards longer, healthier<br>and happier lives.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Know Our Story Section -->
+    <section class="story-section bg-white">
+        <div class="container text-center promo-header">
+            <h2 class="section-title">Know Our Story</h2>
+        </div>
+        
+        <!-- Desktop Grid -->
+        <div class="story-grid-desktop container">
+            <button class="video-thumb js-open-video" data-url="https://www.youtube.com/embed/8T-16fR6SsE" data-type="horizontal">
+                <img loading="lazy" src="https://img.youtube.com/vi/8T-16fR6SsE/hqdefault.jpg" alt="YouTube Video">
+                <div class="video-info">
+                    <div class="video-title">The New Me Philosophy</div>
+                    <div class="small-play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </button>
+            <button class="video-thumb js-open-video" data-url="https://www.youtube.com/embed/F3asDh1jVKA" data-type="horizontal">
+                <img loading="lazy" src="https://img.youtube.com/vi/F3asDh1jVKA/hqdefault.jpg" alt="YouTube Video">
+                <div class="video-info">
+                    <div class="video-title">Reverse Aging Science</div>
+                    <div class="small-play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </button>
+            <button class="video-thumb js-open-video" data-url="https://www.youtube.com/embed/pSd963sNrrk" data-type="horizontal">
+                <img loading="lazy" src="https://img.youtube.com/vi/pSd963sNrrk/hqdefault.jpg" alt="YouTube Video">
+                <div class="video-info">
+                    <div class="video-title">Focus & Mental Clarity</div>
+                    <div class="small-play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </button>
+            <button class="video-thumb js-open-video" data-url="https://www.youtube.com/embed/JoMh1JvlH7U" data-type="horizontal">
+                <img loading="lazy" src="https://img.youtube.com/vi/JoMh1JvlH7U/hqdefault.jpg" alt="YouTube Video">
+                <div class="video-info">
+                    <div class="video-title">Transform Your Diet</div>
+                    <div class="small-play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </button>
+            <button class="video-thumb js-open-video" data-url="https://www.youtube.com/embed/ezqX7KxJPno" data-type="horizontal">
+                <img loading="lazy" src="https://img.youtube.com/vi/ezqX7KxJPno/hqdefault.jpg" alt="YouTube Video">
+                <div class="video-info">
+                    <div class="video-title">Building The Routine</div>
+                    <div class="small-play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </button>
+        </div>
+
+        <!-- Mobile Slider -->
+        <div class="story-slider-mobile">
+            <button class="video-thumb js-open-video" data-url="https://www.youtube.com/embed/8T-16fR6SsE" data-type="horizontal">
+                <img loading="lazy" src="https://img.youtube.com/vi/8T-16fR6SsE/hqdefault.jpg" alt="YouTube Video">
+                <div class="video-info">
+                    <div class="video-title">The New Me Philosophy</div>
+                    <div class="small-play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </button>
+            <button class="video-thumb js-open-video" data-url="https://www.youtube.com/embed/F3asDh1jVKA" data-type="horizontal">
+                <img loading="lazy" src="https://img.youtube.com/vi/F3asDh1jVKA/hqdefault.jpg" alt="YouTube Video">
+                <div class="video-info">
+                    <div class="video-title">Reverse Aging Science</div>
+                    <div class="small-play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </button>
+            <button class="video-thumb js-open-video" data-url="https://www.youtube.com/embed/pSd963sNrrk" data-type="horizontal">
+                <img loading="lazy" src="https://img.youtube.com/vi/pSd963sNrrk/hqdefault.jpg" alt="YouTube Video">
+                <div class="video-info">
+                    <div class="video-title">Focus & Mental Clarity</div>
+                    <div class="small-play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </button>
+            <button class="video-thumb js-open-video" data-url="https://www.youtube.com/embed/JoMh1JvlH7U" data-type="horizontal">
+                <img loading="lazy" src="https://img.youtube.com/vi/JoMh1JvlH7U/hqdefault.jpg" alt="YouTube Video">
+                <div class="video-info">
+                    <div class="video-title">Transform Your Diet</div>
+                    <div class="small-play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </button>
+            <button class="video-thumb js-open-video" data-url="https://www.youtube.com/embed/ezqX7KxJPno" data-type="horizontal">
+                <img loading="lazy" src="https://img.youtube.com/vi/ezqX7KxJPno/hqdefault.jpg" alt="YouTube Video">
+                <div class="video-info">
+                    <div class="video-title">Building The Routine</div>
+                    <div class="small-play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </button>
+        </div>
+    </section>
+
+    <!-- Book Promo Section -->
+    <section class="book-promo bg-off-white">
+        <div class="container text-center promo-header">
+            <div class="section-eyebrow">EXPLORE THE NEW ME ECOSYSTEM</div>
+            <h2 class="section-title">Tools for a Healthier, Happier You</h2>
+            <p class="section-subtitle">Practical solutions for a longer, more vibrant life.</p>
+        </div>
+        <div class="container book-promo-inner">
+            <div class="book-image">
+                <img loading="lazy" src="DATA/The NEW ME 2.0 Book Covers/Book New Me.webp" alt="The New Me 2.0 Book">
+            </div>
+            <div class="book-content">
+                <div class="tag">THE BOOK</div>
+                <h3 class="book-title">The New Me 2.0</h3>
+                <p class="book-desc">A practical guide to reverse-aging and take charge of your healthspan with science-backed insights and simple habits.</p>
+                <div class="book-buttons">
+                    <a href="https://www.amazon.in/dp/9364115511/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get Your Copy</a>
+                    <button class="btn btn-outline js-open-video" data-url="https://www.instagram.com/reel/Dc1KAmZTAzX/embed/" data-type="vertical">What's Inside</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Gallery Section -->
+    <section class="image-gallery-section bg-white" id="image-gallery">
+        <div class="container text-center promo-header">
+            <h2 class="section-title">Image Gallery</h2>
+        </div>
+    </section>
+
+    <!-- Value Props / Feature Grid -->
+    <section class="feature-grid container">
+        <div class="feature-col">
+            <strong>Stronger</strong><br>Everyday Habits
+        </div>
+        <div class="feature-col">
+            <strong>More</strong><br>Energy & Focus
+        </div>
+        <div class="feature-col">
+            <strong>Better</strong><br>Metabolic Health
+        </div>
+        <div class="feature-col">
+            <strong>A Longer</strong><br>Healthspan
+        </div>
+    </section>
+
+    <!-- Quote 2 (Dark) -->
+    <section class="quote-dark">
+        <div class="container text-center">
+            <h2 class="quote-dark-text">"Small, consistent changes<br>today create a healthier tomorrow."</h2>
+            <div class="quote-dark-author">GAGAN DHAWAN</div>
+        </div>
+    </section>
+
+    <!-- Featured In -->
+    <section class="featured-in text-center">
+        <div class="container">
+            <h3 class="featured-title">As Featured In</h3>
+        </div>
+        <div class="marquee-container">
+            <div class="marquee-track">
+                <!-- Original set -->
+                <img loading="lazy" src="DATA/Marquee Brands/AHMEDABAD-MIRROR-LOGO.webp" alt="Ahmedabad Mirror">
+                <img loading="lazy" src="DATA/Marquee Brands/ANI-LOGO.webp" alt="ANI">
+                <img loading="lazy" src="DATA/Marquee Brands/BUSINESSWORLD-LOGO.webp" alt="Businessworld">
+                <img loading="lazy" src="DATA/Marquee Brands/CIOLOOK-LOGO.webp" alt="CIO Look">
+                <img loading="lazy" src="DATA/Marquee Brands/INDIA-TODAY-LOGO.webp" alt="India Today">
+                <img loading="lazy" src="DATA/Marquee Brands/MIDDAY-LOGO.webp" alt="Midday">
+                <img loading="lazy" src="DATA/Marquee Brands/OUTLOOK-LOGO.webp" alt="Outlook">
+                <img loading="lazy" src="DATA/Marquee Brands/ideapreneurindia-logo.webp" alt="Ideapreneur India">
+                <img loading="lazy" src="DATA/Marquee Brands/onlinenews9-logo.webp" alt="Online News 9">
+                <img loading="lazy" src="DATA/Marquee Brands/theknowledgereviewmagazine-logo.webp" alt="The Knowledge Review Magazine">
+                <!-- Duplicate set for seamless loop -->
+                <img loading="lazy" src="DATA/Marquee Brands/AHMEDABAD-MIRROR-LOGO.webp" alt="Ahmedabad Mirror">
+                <img loading="lazy" src="DATA/Marquee Brands/ANI-LOGO.webp" alt="ANI">
+                <img loading="lazy" src="DATA/Marquee Brands/BUSINESSWORLD-LOGO.webp" alt="Businessworld">
+                <img loading="lazy" src="DATA/Marquee Brands/CIOLOOK-LOGO.webp" alt="CIO Look">
+                <img loading="lazy" src="DATA/Marquee Brands/INDIA-TODAY-LOGO.webp" alt="India Today">
+                <img loading="lazy" src="DATA/Marquee Brands/MIDDAY-LOGO.webp" alt="Midday">
+                <img loading="lazy" src="DATA/Marquee Brands/OUTLOOK-LOGO.webp" alt="Outlook">
+                <img loading="lazy" src="DATA/Marquee Brands/ideapreneurindia-logo.webp" alt="Ideapreneur India">
+                <img loading="lazy" src="DATA/Marquee Brands/onlinenews9-logo.webp" alt="Online News 9">
+                <img loading="lazy" src="DATA/Marquee Brands/theknowledgereviewmagazine-logo.webp" alt="The Knowledge Review Magazine">
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Grid -->
+    <section class="blog-section bg-off-white">
+        <div class="container">
+            <div class="blog-header">
+                <h2 class="section-title">Latest from the Blog</h2>
+                <a href="blog.html" class="inline-link" style="font-weight:bold;">View All Articles &rarr;</a>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <img loading="lazy" src="DATA/blog 1.webp" alt="Blog Post 1">
+                    <div class="blog-card-content">
+                        <div class="tag">NUTRITION</div>
+                        <h3 class="blog-card-title">Weight Loss Tips for a Healthy Lifestyle</h3>
+                        <a href="weight-loss-tips.html" class="inline-link">Read More &rarr;</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img loading="lazy" src="DATA/blog 2.webp" alt="Blog Post 2">
+                    <div class="blog-card-content">
+                        <div class="tag">LIFESTYLE</div>
+                        <h3 class="blog-card-title">Health Benefits of Morning Walk</h3>
+                        <a href="health-benefits-morning-walk.html" class="inline-link">Read More &rarr;</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img loading="lazy" src="DATA/blog 3.webp" alt="Blog Post 3">
+                    <div class="blog-card-content">
+                        <div class="tag">WELLNESS</div>
+                        <h3 class="blog-card-title">Habits That Will Help You Join the 5 AM Club</h3>
+                        <a href="join-5am-club.html" class="inline-link">Read More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Protein Section (About the Protein Product - Moved to end of Home page) -->
+    <section class="protein-arrival bg-white">
+        <div class="container text-center protein-arrival-header">
+            <div class="protein-arrival-eyebrow">NEW ARRIVAL</div>
+            <h2 class="protein-arrival-title">The New Me Protein</h2>
+            <p class="protein-arrival-subtitle">Fuel your transformation with our premium plant-based protein.</p>
+        </div>
+        <div class="container protein-arrival-inner">
+            <div class="protein-arrival-image-wrap">
+                <img loading="lazy" src="images/Plant_protein_pouch_on_plinth_clean.webp" alt="The New Me Plant Protein" class="protein-arrival-img">
+            </div>
+            <div class="protein-arrival-content">
+                <div class="tag">NUTRITION</div>
+                <h3 class="book-title">Premium Plant-Based Blend</h3>
+                <p class="book-desc">Formulated for optimal absorption, energy recovery, and sustainable muscle support. Clean ingredients, no fillers.</p>
+                <div class="book-buttons">
+                    <a href="protein-powder.html" class="btn btn-primary">Discover Protein</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="newsletter-section">
+        <div class="container newsletter-inner">
+            <img loading="lazy" src="DATA/leaf 1.webp" alt="" class="newsletter-leaf leaf-left">
+            <img loading="lazy" src="DATA/leaf 2.webp" alt="" class="newsletter-leaf leaf-right">
+            <div class="newsletter-content">
+                <h2>Join the Movement</h2>
+                <p>Get expert tips, new updates and exclusive offers.</p>
+            </div>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" class="email-input">
+                <button class="btn btn-primary">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+        <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-col-brand">
+                <div class="footer-logo">
+                    <img src="DATA/NAV BAR/Logo top text.webp" alt="the new me" class="footer-logo-img" decoding="async" width="138" height="24">
+                    <span class="logo-subtext">EAT • FOCUS • REBUILD • LIVE</span>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/ilovenewme?stkn=bnNyZGUxMHY4ZGZn&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="DATA/About Us/instagram.svg" alt="Instagram" class="social-icon" decoding="async" width="22" height="22"></a>
+                    <a href="https://www.facebook.com/share/1DnkznQLPR/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="DATA/About Us/facebook.svg" alt="Facebook" class="social-icon" decoding="async" width="22" height="22"></a>
+                    <a href="#" aria-label="YouTube"><img src="DATA/About Us/youtube.svg" alt="YouTube" class="social-icon" decoding="async" width="22" height="22"></a>
+                    <a href="#" aria-label="LinkedIn"><img src="DATA/About Us/linked_in.svg" alt="LinkedIn" class="social-icon" decoding="async" width="22" height="22"></a>
+                    <a href="#" aria-label="X (Twitter)"><img src="DATA/About Us/x.svg" alt="X (Twitter)" class="social-icon" decoding="async" width="22" height="22"></a>
+                </div>
+            </div>
+            <div class="footer-col footer-col-links">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="https://www.amazon.in/dp/9364115511/" target="_blank" rel="noopener noreferrer">The Book</a>
+                <a href="protein-powder.html">Protein Powder</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-col footer-col-help">
+                <h4>Help</h4>
+                <a href="#">FAQs</a>
+                <a href="#">Terms &amp; Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Return Policy</a>
+                <a href="#">Delivery Policy</a>
+                <a href="#">Cancellation Policy</a>
+            </div>
+            <div class="footer-col footer-col-contact">
+                <h4>Contact Us</h4>
+                <p>Plot No 49, Pace City - 1,<br>Sector 37, Gurgaon, Haryana - 122004</p>
+                <p><a href="mailto:info@thenewme.com">info@thenewme.com</a></p>
+                <p><a href="tel:+919958975112">+91 9958975112</a></p>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 The New Me. All rights reserved.</p>
+            <p>A Healthier, Happier You, Always.</p>
+        </div>
+    </footer>
+
+    <!-- Video Modal Overlay -->
+    <div id="video-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button id="modal-close" class="modal-close-btn">&times;</button>
+            <div id="modal-video-container" class="video-container"></div>
+        </div>
+    </div>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay hidden" id="searchOverlay">
+        <button class="search-close" id="searchClose" aria-label="Close search">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        <div class="search-overlay-content">
+            <h2 class="search-title">What are you looking for?</h2>
+            <form class="search-form" action="https://ilovenewme.com/" method="GET">
+                <input type="text" name="s" placeholder="Search articles, topics..." class="search-input-large" id="searchInputDesktop">
+                <button type="submit" class="search-submit-btn" aria-label="Submit search">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="vendor/gsap/gsap.min.js"></script>
+    <script>window.gsap || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"><\/script>')</script>
+    <script src="site-loader.js?v=unified_v2"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+

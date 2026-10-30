@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | The New Me | A Revolution in Ageing</title>
+    <meta name="description" content="Discover The New Me, a science-backed lifestyle initiative dedicated to healthy longevity, reverse aging, whole plant nutrition, and daily vitality.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon & Brand Icons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    
+    <link rel="stylesheet" href="style.css?v=navbar_sticky">
+    <style>
+        :root {
+            --font-heading: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --primary-green: #1f3e21;
+            --primary-green-hover: #142a16;
+            --accent-mint: #eef6f0;
+            --accent-gold: #c99a2c;
+            --bg-parchment: #faf8f5;
+            --bg-card: #ffffff;
+            --text-dark: #111111;
+            --text-body: #333333;
+            --text-muted: #555555;
+            --border-subtle: rgba(31, 62, 33, 0.12);
+            --card-radius: 24px;
+        }
+
+        body, button, input, select, textarea {
+            font-family: var(--font-body);
+            color: var(--text-body);
+        }
+
+        h1, h2, h3, h4, h5, h6,
+        .editorial-title,
+        .section-headline,
+        .pillar-card-title,
+        .featured-title {
+            font-family: var(--font-heading);
+            color: var(--text-dark);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        /* Accessible Keyboard Focus Rings */
+        :focus-visible {
+            outline: 2px solid var(--primary-green) !important;
+            outline-offset: 3px !important;
+        }
+
+        /* Viewport-Triggered Scroll Reveals */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-d1 { transition-delay: 0.1s; }
+        .reveal-d2 { transition-delay: 0.2s; }
+        .reveal-d3 { transition-delay: 0.3s; }
+        .reveal-d4 { transition-delay: 0.4s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+
+        /* Hero Section */
+        .about-hero-section {
+            background-color: var(--bg-parchment);
+            padding: 56px 24px 64px;
+            position: relative;
+            margin-top: var(--header-height, 65px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .about-hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        @media (min-width: 992px) {
+            .about-hero-container {
+                grid-template-columns: 1.15fr 0.85fr;
+                gap: 56px;
+            }
+        }
+
+        .about-hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .editorial-eyebrow {
+            display: inline-block;
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--primary-green);
+        }
+        .editorial-title {
+            font-size: clamp(2.3rem, 4.4vw, 3.6rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+            margin: 0;
+            color: var(--text-dark);
+        }
+        .editorial-lead {
+            font-size: 1.12rem;
+            line-height: 1.75;
+            color: var(--text-dark);
+            font-weight: 500;
+            margin: 0;
+        }
+        .editorial-body {
+            font-size: 1.02rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin: 0;
+        }
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 10px;
+        }
+        .btn-editorial-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 13px 26px;
+            background: var(--primary-green);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.88rem;
+            letter-spacing: 0.04em;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: background-color 0.25s ease, transform 0.25s ease;
+            min-height: 46px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            touch-action: manipulation;
+        }
+        .btn-editorial-primary:hover {
+            background: var(--primary-green-hover);
+            transform: translateY(-2px);
+        }
+        .btn-editorial-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 13px 26px;
+            background: #ffffff;
+            color: var(--primary-green);
+            border: 1px solid var(--border-subtle);
+            font-weight: 700;
+            font-size: 0.88rem;
+            letter-spacing: 0.04em;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            min-height: 46px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            touch-action: manipulation;
+        }
+        .btn-editorial-secondary:hover {
+            border-color: var(--primary-green);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Image Frame */
+        .hero-visual-frame {
+            position: relative;
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            background: #ffffff;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 12px 35px rgba(31, 62, 33, 0.07);
+        }
+        .hero-visual-frame img {
+            width: 100%;
+            height: 100%;
+            max-height: 460px;
+            object-fit: cover;
+            display: block;
+        }
+        .hero-visual-caption {
+            padding: 14px 20px;
+            background: #ffffff;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .hero-visual-caption strong {
+            color: var(--primary-green);
+        }
+
+        /* Brand Story Section */
+        .brand-story-section {
+            background-color: var(--bg-parchment);
+            padding: 96px 24px;
+            border-bottom: 1px solid var(--border-subtle);
+            scroll-margin-top: 90px;
+        }
+        .brand-story-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-header-centered {
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto 52px;
+        }
+        .section-headline {
+            font-size: clamp(2.1rem, 3.6vw, 2.9rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin: 12px 0 16px;
+            line-height: 1.2;
+        }
+        .section-subheadline {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ===================================================
+           Awwwards-Tier Asymmetrical Bento Grid Framework (#our-story)
+           =================================================== */
+        .bento-story-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+        @media (min-width: 992px) {
+            .bento-story-grid {
+                grid-template-columns: repeat(12, 1fr);
+            }
+        }
+
+        /* Double-Bezel Architecture & Card Foundations */
+        .bento-card {
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 0.3s ease;
+        }
+
+        /* Bento 01: Monolithic Emerald Manifesto Card (7 Columns) */
+        .bento-card-manifesto {
+            grid-column: 1 / -1;
+            background: linear-gradient(155deg, #18351B 0%, #102413 100%);
+            color: #FFFFFF;
+            padding: 48px 44px;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            box-shadow: 0 20px 48px rgba(15, 35, 18, 0.16), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            justify-content: space-between;
+        }
+        @media (min-width: 992px) {
+            .bento-card-manifesto {
+                grid-column: span 7;
+            }
+        }
+        @media (max-width: 768px) {
+            .bento-card-manifesto {
+                padding: 32px 24px;
+            }
+        }
+        .bento-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            width: fit-content;
+        }
+        .bento-badge-gold {
+            background: rgba(197, 160, 89, 0.15);
+            color: #E2C485;
+            border: 1px solid rgba(197, 160, 89, 0.35);
+        }
+        .bento-manifesto-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.85rem, 2.8vw, 2.45rem);
+            line-height: 1.22;
+            color: #FFFFFF;
+            margin: 22px 0 20px;
+            letter-spacing: -0.015em;
+            font-weight: 700;
+        }
+        .bento-manifesto-p {
+            font-size: 1.04rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.88);
+            margin: 0 0 24px;
+        }
+        .bento-manifesto-quote {
+            border-left: 2px solid var(--gold-accent);
+            padding: 12px 18px;
+            font-size: 1.06rem;
+            line-height: 1.6;
+            color: #F7EFE1;
+            font-style: italic;
+            margin: 0 0 28px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0 12px 12px 0;
+        }
+        .bento-manifesto-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            flex-wrap: wrap;
+        }
+        .bento-archive-stamp {
+            font-size: 0.74rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            color: rgba(255, 255, 255, 0.65);
+            text-transform: uppercase;
+        }
+        .bento-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: #8CE8A0;
+            text-transform: uppercase;
+        }
+        .bento-pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #55DC74;
+            box-shadow: 0 0 0 3px rgba(85, 220, 116, 0.25);
+            animation: pulse-ring 2s infinite ease-out;
+        }
+
+        /* Bento 02: Cellular Longevity Protocol (5 Columns) */
+        .bento-card-protocol {
+            grid-column: 1 / -1;
+            background: #FFFFFF;
+            border: 1px solid var(--border-subtle);
+            padding: 44px 38px;
+            box-shadow: 0 16px 40px rgba(31, 62, 33, 0.05);
+            justify-content: space-between;
+        }
+        @media (min-width: 992px) {
+            .bento-card-protocol {
+                grid-column: span 5;
+            }
+        }
+        @media (max-width: 768px) {
+            .bento-card-protocol {
+                padding: 32px 24px;
+            }
+        }
+        .bento-protocol-header {
+            margin-bottom: 24px;
+        }
+        .bento-badge-green {
+            background: var(--accent-mint);
+            color: var(--primary-green);
+            border: 1px solid rgba(31, 62, 33, 0.15);
+        }
+        .bento-protocol-h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 14px 0 6px;
+            line-height: 1.3;
+        }
+        .bento-protocol-sub {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.5;
+        }
+        .bento-protocol-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .bento-protocol-item {
+            background: var(--bg-parchment);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 16px 18px;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .bento-protocol-item:hover {
+            border-color: rgba(31, 62, 33, 0.3);
+            background: #ffffff;
+            box-shadow: 0 6px 18px rgba(31, 62, 33, 0.06);
+            transform: translateX(4px);
+        }
+        .bento-item-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .bento-item-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+        .bento-item-badge {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: #FFFFFF;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-dark);
+        }
+        .bento-item-desc {
+            font-size: 0.88rem;
+            line-height: 1.55;
+            color: var(--text-body);
+            margin: 0;
+        }
+
+        /* Bento 03, 04, 05: Tripartite Pillars (4 Columns each) */
+        .bento-card-pillar {
+            grid-column: 1 / -1;
+            background: #FFFFFF;
+            border: 1px solid var(--border-subtle);
+            padding: 36px 30px;
+            box-shadow: 0 12px 32px rgba(31, 62, 33, 0.04);
+            justify-content: space-between;
+        }
+        @media (min-width: 768px) {
+            .bento-card-pillar {
+                grid-column: span 4;
+            }
+        }
+        .bento-card-pillar:hover {
+            transform: translateY(-6px);
+            border-color: rgba(31, 62, 33, 0.28);
+            box-shadow: 0 20px 44px rgba(31, 62, 33, 0.1);
+        }
+        .bento-pillar-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+        }
+        .bento-pillar-icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: var(--bg-parchment);
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            transition: all 0.25s ease;
+        }
+        .bento-card-pillar:hover .bento-pillar-icon-box {
+            background: var(--primary-green);
+            color: #FFFFFF;
+            border-color: var(--primary-green);
+        }
+        .bento-pillar-watermark {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.4rem;
+            font-weight: 800;
+            font-style: italic;
+            color: rgba(31, 62, 33, 0.08);
+            line-height: 1;
+            user-select: none;
+        }
+        .bento-pillar-title {
+            font-size: 1.22rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0 0 12px;
+            line-height: 1.3;
+        }
+        .bento-pillar-desc {
+            font-size: 0.93rem;
+            line-height: 1.7;
+            color: var(--text-body);
+            margin: 0 0 20px;
+        }
+        .bento-pillar-footer {
+            padding-top: 18px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .bento-pillar-tag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary-green);
+        }
+        .bento-pillar-meta {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* 4 Pillars Section */
+        .pillars-section {
+            background-color: var(--bg-parchment);
+            padding: 80px 24px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .pillars-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+        @media (min-width: 680px) {
+            .pillars-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 992px) {
+            .pillars-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .pillar-card {
+            background: #ffffff;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--card-radius);
+            padding: 34px 26px 30px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 8px 24px rgba(31, 62, 33, 0.04);
+        }
+        .pillar-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 36px rgba(31, 62, 33, 0.1);
+            border-color: rgba(31, 62, 33, 0.28);
+        }
+        .pillar-watermark {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            font-style: italic;
+            font-weight: 800;
+            color: rgba(31, 62, 33, 0.06);
+            line-height: 1;
+            user-select: none;
+            pointer-events: none;
+        }
+        .pillar-tag {
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--primary-green);
+            margin-bottom: 12px;
+        }
+        .pillar-card-title {
+            font-size: 1.28rem;
+            font-weight: 700;
+            margin: 0 0 12px;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+        .pillar-card-desc {
+            font-size: 0.94rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        /* Mission & Vision Section */
+        .mission-vision-section {
+            background-color: #ffffff;
+            padding: 80px 24px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .mission-vision-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+        }
+        @media (min-width: 840px) {
+            .mv-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 36px;
+            }
+        }
+
+        .mv-panel-mission {
+            background: var(--primary-green);
+            color: #ffffff;
+            border-radius: var(--card-radius);
+            padding: 44px 38px;
+            box-shadow: 0 16px 40px rgba(31, 62, 33, 0.16);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .mv-tag-mission {
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #9fe0be;
+        }
+        .mv-title-mission {
+            font-family: var(--font-heading);
+            font-size: 2.1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+            letter-spacing: -0.015em;
+        }
+        .mv-desc-mission {
+            font-size: 1.02rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.92);
+            margin: 0;
+        }
+
+        .mv-panel-vision {
+            background: var(--bg-parchment);
+            color: var(--text-dark);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--card-radius);
+            padding: 44px 38px;
+            box-shadow: 0 12px 35px rgba(31, 62, 33, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .mv-tag-vision {
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--primary-green);
+        }
+        .mv-title-vision {
+            font-family: var(--font-heading);
+            font-size: 2.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0;
+            letter-spacing: -0.015em;
+        }
+        .mv-desc-vision {
+            font-size: 1.02rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* As Featured In (Marquee Brands - Preserved Sizing) */
+        .featured-in {
+            padding: 44px 0;
+            text-align: center;
+            background: #ffffff;
+            overflow: hidden;
+            position: relative;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .featured-header {
+            margin-bottom: 24px;
+        }
+        .featured-title {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0 0 6px;
+            letter-spacing: -0.015em;
+            line-height: 1.2;
+        }
+        .featured-sub {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            width: 100%;
+            padding: 0;
+            line-height: 0;
+            font-size: 0;
+            mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+        }
+        .marquee-track {
+            display: inline-flex;
+            align-items: center;
+            gap: 3rem;
+            padding-right: 3rem;
+            animation: scroll-marquee 32s linear infinite;
+            line-height: normal;
+        }
+        @keyframes scroll-marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-track img {
+            height: 58px;
+            width: auto;
+            max-width: 180px;
+            opacity: 0.65;
+            filter: grayscale(100%);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            object-fit: contain;
+            vertical-align: middle;
+        }
+        .marquee-track img:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.06);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .about-hero-section { padding: 40px 16px 48px; }
+            .brand-story-section { padding: 60px 16px; }
+            .pillars-section { padding: 60px 16px; }
+            .mission-vision-section { padding: 60px 16px; }
+            .mv-panel-mission, .mv-panel-vision { padding: 32px 24px; }
+            .featured-in { padding: 32px 0; }
+            .featured-title { font-size: 1.65rem; margin: 0 0 4px; }
+            .marquee-track { gap: 2rem; padding-right: 2rem; animation-duration: 22s; }
+            .marquee-track img { height: 44px; max-width: 140px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-actions { flex-direction: column; width: 100%; gap: 10px; }
+            .btn-editorial-primary, .btn-editorial-secondary { width: 100%; text-align: center; }
+            .featured-in { padding: 26px 0; }
+            .featured-title { font-size: 1.45rem; margin: 0 0 4px; }
+            .marquee-track { gap: 1.75rem; padding-right: 1.75rem; }
+            .marquee-track img { height: 40px; max-width: 125px; }
+        }
+
+        /* Footer Policy Interactive Buttons */
+        .footer-policy-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            text-align: left;
+            margin-bottom: 10px;
+            display: block;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .footer-policy-btn:hover {
+            color: var(--primary-green);
+        }
+
+        /* Accessible Information Dialog */
+        .policy-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(17, 17, 17, 0.65);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        .policy-modal.is-active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .policy-modal-card {
+            background: #ffffff;
+            border-radius: 20px;
+            max-width: 520px;
+            width: 100%;
+            padding: 32px 28px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-subtle);
+        }
+        .policy-modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            line-height: 1;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 8px;
+        }
+        .policy-modal-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin: 0 0 12px;
+            color: var(--text-dark);
+        }
+        .policy-modal-body {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-body);
+            margin: 0 0 20px;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo" aria-label="The New Me Home">
+                <img fetchpriority="high" decoding="sync" src="DATA/NAV BAR/heart logo.webp" alt="Heart Logo" class="logo-heart">
+                <img fetchpriority="high" decoding="sync" src="DATA/NAV BAR/Logo top text.webp" alt="the new me" class="logo-text-img">
+            </a>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="https://www.amazon.in/dp/9364115511/" target="_blank" rel="noopener noreferrer" class="nav-link">The Book</a>
+                <a href="protein-powder.html" class="nav-link">Protein Powder</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn js-open-search" aria-label="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+                <button class="icon-btn cart-btn" aria-label="Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <span class="cart-badge">0</span>
+                </button>
+                <a href="https://www.amazon.in/dp/9364115511/" target="_blank" rel="noopener noreferrer" class="btn btn-primary header-cta-desktop">Get The Book</a>
+            </div>
+            <!-- Mobile Hamburger -->
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer-backdrop" id="drawerBackdrop"></div>
+    <nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <div class="drawer-header">
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <div class="drawer-links">
+            <a href="index.html" class="drawer-link">Home</a>
+            <a href="about.html" class="drawer-link active">About</a>
+            <a href="https://www.amazon.in/dp/9364115511/" target="_blank" rel="noopener noreferrer" class="drawer-link">The Book</a>
+            <a href="protein-powder.html" class="drawer-link">Protein Powder</a>
+            <a href="blog.html" class="drawer-link">Blog</a>
+            <a href="contact.html" class="drawer-link">Contact</a>
+        </div>
+        <form class="drawer-search" action="https://ilovenewme.com/" method="GET">
+            <input type="text" name="s" placeholder="Search articles..." class="drawer-search-input">
+        </form>
+        <div class="drawer-cta">
+            <a href="https://www.amazon.in/dp/9364115511/" target="_blank" rel="noopener noreferrer" class="btn btn-primary drawer-cta-btn">Get The Book</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Section 1: Editorial Hero -->
+        <section class="about-hero-section">
+            <div class="about-hero-container">
+                <div class="about-hero-content reveal">
+                    <span class="editorial-eyebrow">A Manifesto for Self-Renewal</span>
+                    <h1 class="editorial-title">Ageing is inevitable. Decline is optional.</h1>
+                    <p class="editorial-lead">
+                        We are dedicated to better health through simple, sustainable change. Our work is rooted in whole plant-based nutrition, circadian alignment, and the core belief that daily movement is not optional, it is essential.
+                    </p>
+                    <p class="editorial-body">
+                        The New Me is a movement for biological renewal. Rooted in longevity science, unadulterated botanical formulations, and everyday habits that restore your vitality from within, we invite you to pause, rebuild, and rise with balance.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#our-story" class="btn-editorial-primary">Discover Our Story</a>
+                        <a href="https://www.amazon.in/dp/9364115511/" target="_blank" rel="noopener noreferrer" class="btn-editorial-secondary">Explore The Book</a>
+                    </div>
+                </div>
+                <div class="hero-visual-frame reveal reveal-d1">
+                    <img fetchpriority="high" decoding="sync" src="DATA/about_hero_image.webp" alt="Morning wellness setting with lemon water, fresh green apples, and gentle sunlight">
+                    <div class="hero-visual-caption">
+                        <span><strong>Living Vitality:</strong> Whole food nutrition and natural light</span>
+                        <span>The New Me</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: About The New Me (Brand Origin & Philosophy) -->
+        <section class="brand-story-section" id="our-story">
+            <div class="brand-story-container">
+                <div class="section-header-centered reveal">
+                    <span class="editorial-eyebrow">Origin &amp; Purpose</span>
+                    <h2 class="section-headline">A Revolution in Ageing: The Story of The New Me</h2>
+                    <p class="section-subheadline">
+                        How the need for sustainable cellular recovery evolved into an evidence-grounded longevity movement.
+                    </p>
+                </div>
+                
+                <div class="bento-story-grid">
+                    <!-- Bento 01: Monolithic Emerald Manifesto Card (7 Columns) -->
+                    <article class="bento-card bento-card-manifesto reveal">
+                        <div class="bento-manifesto-header">
+                            <span class="bento-badge-pill bento-badge-gold">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                Biological Renewal
+                            </span>
+                            <h3 class="bento-manifesto-title">
+                                Ageing is inevitable. Biological decline is an active choice.
+                            </h3>
+                            <p class="bento-manifesto-p">
+                                In an era defined by relentless velocity and artificial stimulants, physical vitality is frequently treated as an expendable resource. The modern consensus conditions us to endure chronic cellular depletion, mistaking fatigue for unavoidable senescence.
+                            </p>
+                            <blockquote class="bento-manifesto-quote">
+                                &ldquo;True vitality is never achieved through extreme restriction. It is cultivated through biological discipline, clean plant nourishment, and circadian alignment.&rdquo;
+                            </blockquote>
+                        </div>
+                        <div class="bento-manifesto-footer">
+                            <span class="bento-archive-stamp">The New Me Archive &middot; Longevity Framework</span>
+                            <span class="bento-status-pill">
+                                <span class="bento-pulse-dot"></span> Active Autophagy Protocol
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- Bento 02: Cellular Longevity Protocol Matrix (5 Columns) -->
+                    <aside class="bento-card bento-card-protocol reveal reveal-d1">
+                        <div class="bento-protocol-header">
+                            <span class="bento-badge-pill bento-badge-green">
+                                Scientific Rigor
+                            </span>
+                            <h3 class="bento-protocol-h3">Cellular Longevity Architecture</h3>
+                            <p class="bento-protocol-sub">Our evidence-grounded approach to reversing systemic biological fatigue.</p>
+                        </div>
+                        <div class="bento-protocol-list">
+                            <div class="bento-protocol-item">
+                                <div class="bento-item-top">
+                                    <span class="bento-item-title">Botanical Purity</span>
+                                    <span class="bento-item-badge">Clean Label</span>
+                                </div>
+                                <p class="bento-item-desc">Cold-milled golden pea isolates free from maltodextrin, gums, chemical thickeners, and pesticide residues.</p>
+                            </div>
+                            <div class="bento-protocol-item">
+                                <div class="bento-item-top">
+                                    <span class="bento-item-title">Cellular Autophagy</span>
+                                    <span class="bento-item-badge">Metabolic Reset</span>
+                                </div>
+                                <p class="bento-item-desc">Targeted metabolic fasting windows and bioavailable polyphenols designed to accelerate lysosomal cell turnover.</p>
+                            </div>
+                            <div class="bento-protocol-item">
+                                <div class="bento-item-top">
+                                    <span class="bento-item-title">Circadian Alignment</span>
+                                    <span class="bento-item-badge">Solar Sync</span>
+                                </div>
+                                <p class="bento-item-desc">Morning solar lux exposure, sleep phase hygiene, and cortisol buffering engineered for sustained natural energy.</p>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Bento 03: Evidence Over Fads (4 Columns) -->
+                    <div class="bento-card bento-card-pillar reveal">
+                        <div class="bento-pillar-top">
+                            <div class="bento-pillar-icon-box">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31"></path><path d="M14 9.3V2"></path><path d="M8.5 2h7"></path><path d="M14 9.3a6.5 6.5 0 1 1-4 0"></path><path d="M5.52 16h12.96"></path></svg>
+                            </div>
+                        </div>
+                        <h4 class="bento-pillar-title">Evidence Over Fads</h4>
+                        <p class="bento-pillar-desc">Root-cause lifestyle medicine and peer-reviewed longevity science prioritized over superficial fitness marketing trends.</p>
+                        <div class="bento-pillar-footer">
+                            <span class="bento-pillar-tag">Methodology</span>
+                            <span class="bento-pillar-meta">Clinical Research</span>
+                        </div>
+                    </div>
+
+                    <!-- Bento 04: Zero Artificial Fillers (4 Columns) -->
+                    <div class="bento-card bento-card-pillar reveal reveal-d1">
+                        <div class="bento-pillar-top">
+                            <div class="bento-pillar-icon-box">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12A10 10 0 0 1 12 2z"></path><path d="M12 6v6l4 2"></path></svg>
+                            </div>
+                        </div>
+                        <h4 class="bento-pillar-title">Zero Artificial Fillers</h4>
+                        <p class="bento-pillar-desc">Unadulterated whole-plant compounds crafted with pesticide-controlled isolates and zero synthetic chemical thickeners.</p>
+                        <div class="bento-pillar-footer">
+                            <span class="bento-pillar-tag">Formulation</span>
+                            <span class="bento-pillar-meta">100% Whole Food</span>
+                        </div>
+                    </div>
+
+                    <!-- Bento 05: Habitual Longevity (4 Columns) -->
+                    <div class="bento-card bento-card-pillar reveal reveal-d2">
+                        <div class="bento-pillar-top">
+                            <div class="bento-pillar-icon-box">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                            </div>
+                        </div>
+                        <h4 class="bento-pillar-title">Habitual Longevity</h4>
+                        <p class="bento-pillar-desc">Accessible daily movement routines, natural sunlight anchoring, and mindful circadian rhythm designed for real lives.</p>
+                        <div class="bento-pillar-footer">
+                            <span class="bento-pillar-tag">Discipline</span>
+                            <span class="bento-pillar-meta">Daily Routine</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: The 4 Core Pillars of Renewal -->
+        <section class="pillars-section">
+            <div class="pillars-container">
+                <div class="section-header-centered reveal">
+                    <span class="editorial-eyebrow">Our Guiding Framework</span>
+                    <h2 class="section-headline">The Four Pillars of Renewal</h2>
+                    <p class="section-subheadline">
+                        A grounded, sustainable philosophy built on biological longevity science rather than temporary fitness fads.
+                    </p>
+                </div>
+
+                <div class="pillars-grid">
+                    <!-- Pillar 01: EAT -->
+                    <div class="pillar-card reveal reveal-d1">
+                        <span class="pillar-watermark" aria-hidden="true">01</span>
+                        <span class="pillar-tag">Pillar One</span>
+                        <h3 class="pillar-card-title">EAT: Living Plant Nutrition</h3>
+                        <p class="pillar-card-desc">
+                            Whole-food botanical isolates, pure plant protein, and micronutrient-dense meals that fuel cellular mitochondria without digestive friction or artificial fillers.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 02: FOCUS -->
+                    <div class="pillar-card reveal reveal-d2">
+                        <span class="pillar-watermark" aria-hidden="true">02</span>
+                        <span class="pillar-tag">Pillar Two</span>
+                        <h3 class="pillar-card-title">FOCUS: Circadian &amp; Mental Clarity</h3>
+                        <p class="pillar-card-desc">
+                            Intentional morning sunlight, conscious digital hygiene, and stress-buffering routines that anchor hormonal balance and restore nervous system regulation.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 03: REBUILD -->
+                    <div class="pillar-card reveal reveal-d3">
+                        <span class="pillar-watermark" aria-hidden="true">03</span>
+                        <span class="pillar-tag">Pillar Three</span>
+                        <h3 class="pillar-card-title">REBUILD: Autophagy &amp; Cellular Rest</h3>
+                        <p class="pillar-card-desc">
+                            Deep restorative sleep hygiene and gut microbiome nourishment that activate nocturnal cellular repair, tissue rejuvenation, and metabolic vitality.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 04: LIVE -->
+                    <div class="pillar-card reveal reveal-d4">
+                        <span class="pillar-watermark" aria-hidden="true">04</span>
+                        <span class="pillar-tag">Pillar Four</span>
+                        <h3 class="pillar-card-title">LIVE: Daily Movement &amp; Vitality</h3>
+                        <p class="pillar-card-desc">
+                            Non-negotiable daily movement snacks, brisk outdoor walks, and functional mobility that maintain joint longevity and metabolic flexibility for decades to come.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Dual Compass (Mission & Vision) -->
+        <section class="mission-vision-section">
+            <div class="mission-vision-container">
+                <div class="mv-grid">
+                    <!-- Mission Panel -->
+                    <div class="mv-panel-mission reveal reveal-d1">
+                        <span class="mv-tag-mission">Our Core Mission</span>
+                        <h2 class="mv-title-mission">Our Mission</h2>
+                        <p class="mv-desc-mission">
+                            Wellness is a return to natural vitality, and natural vitality unlocks healthy longevity. We help people shift away from an obsessive, punishing focus on quick-fix weight loss, which damages emotional and metabolic health, and move toward sustainable habits and daily lifestyle shifts that endure for decades.
+                        </p>
+                    </div>
+
+                    <!-- Vision Panel -->
+                    <div class="mv-panel-vision reveal reveal-d2">
+                        <span class="mv-tag-vision">Our Future Horizon</span>
+                        <h2 class="mv-title-vision">Our Vision</h2>
+                        <p class="mv-desc-vision">
+                            To invest in human healthspan and transform everyday lives by making whole plant-based nutrition, practical longevity habits, and accessible physical guidance available to people of all ages across the globe.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: As Featured In (Marquee Brands) -->
+        <section class="featured-in reveal">
+            <div class="container featured-header">
+                <h2 class="featured-title">As Featured In</h2>
+                <p class="featured-sub">Documented and recognized across leading national publications</p>
+            </div>
+            <div class="marquee-container">
+                <div class="marquee-track">
+                    <!-- Original set -->
+                    <img loading="lazy" src="DATA/Marquee Brands/AHMEDABAD-MIRROR-LOGO.webp" alt="Ahmedabad Mirror">
+                    <img loading="lazy" src="DATA/Marquee Brands/ANI-LOGO.webp" alt="ANI">
+                    <img loading="lazy" src="DATA/Marquee Brands/BUSINESSWORLD-LOGO.webp" alt="Businessworld">
+                    <img loading="lazy" src="DATA/Marquee Brands/CIOLOOK-LOGO.webp" alt="CIO Look">
+                    <img loading="lazy" src="DATA/Marquee Brands/INDIA-TODAY-LOGO.webp" alt="India Today">
+                    <img loading="lazy" src="DATA/Marquee Brands/MIDDAY-LOGO.webp" alt="Midday">
+                    <img loading="lazy" src="DATA/Marquee Brands/OUTLOOK-LOGO.webp" alt="Outlook">
+                    <img loading="lazy" src="DATA/Marquee Brands/ideapreneurindia-logo.webp" alt="Ideapreneur India">
+                    <img loading="lazy" src="DATA/Marquee Brands/onlinenews9-logo.webp" alt="Online News 9">
+                    <img loading="lazy" src="DATA/Marquee Brands/theknowledgereviewmagazine-logo.webp" alt="The Knowledge Review Magazine">
+                    <!-- Duplicate set for seamless loop -->
+                    <img loading="lazy" src="DATA/Marquee Brands/AHMEDABAD-MIRROR-LOGO.webp" alt="Ahmedabad Mirror">
+                    <img loading="lazy" src="DATA/Marquee Brands/ANI-LOGO.webp" alt="ANI">
+                    <img loading="lazy" src="DATA/Marquee Brands/BUSINESSWORLD-LOGO.webp" alt="Businessworld">
+                    <img loading="lazy" src="DATA/Marquee Brands/CIOLOOK-LOGO.webp" alt="CIO Look">
+                    <img loading="lazy" src="DATA/Marquee Brands/INDIA-TODAY-LOGO.webp" alt="India Today">
+                    <img loading="lazy" src="DATA/Marquee Brands/MIDDAY-LOGO.webp" alt="Midday">
+                    <img loading="lazy" src="DATA/Marquee Brands/OUTLOOK-LOGO.webp" alt="Outlook">
+                    <img loading="lazy" src="DATA/Marquee Brands/ideapreneurindia-logo.webp" alt="Ideapreneur India">
+                    <img loading="lazy" src="DATA/Marquee Brands/onlinenews9-logo.webp" alt="Online News 9">
+                    <img loading="lazy" src="DATA/Marquee Brands/theknowledgereviewmagazine-logo.webp" alt="The Knowledge Review Magazine">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-col-brand">
+                <div class="footer-logo">
+                    <img loading="lazy" src="DATA/NAV BAR/Logo top text.webp" alt="the new me" class="footer-logo-img">
+                    <span class="logo-subtext">EAT • FOCUS • REBUILD • LIVE</span>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/ilovenewme?stkn=bnNyZGUxMHY4ZGZn&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img loading="lazy" src="DATA/About Us/instagram.svg" alt="Instagram" class="social-icon"></a>
+                    <a href="https://www.facebook.com/share/1DnkznQLPR/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img loading="lazy" src="DATA/About Us/facebook.svg" alt="Facebook" class="social-icon"></a>
+                    <a href="https://www.youtube.com/@the_new_me" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img loading="lazy" src="DATA/About Us/youtube.svg" alt="YouTube" class="social-icon"></a>
+                    <a href="contact.html" aria-label="LinkedIn profile coming soon"><img loading="lazy" src="DATA/About Us/linked_in.svg" alt="LinkedIn" class="social-icon"></a>
+                    <a href="contact.html" aria-label="Twitter X profile coming soon"><img loading="lazy" src="DATA/About Us/x.svg" alt="X (Twitter)" class="social-icon"></a>
+                </div>
+            </div>
+            <div class="footer-col footer-col-links">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="https://www.amazon.in/dp/9364115511/" target="_blank" rel="noopener noreferrer">The Book</a>
+                <a href="protein-powder.html">Protein Powder</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-col footer-col-help">
+                <h4>Help &amp; Policies</h4>
+                <button type="button" class="footer-policy-btn js-open-policy" data-policy="faqs">FAQs</button>
+                <button type="button" class="footer-policy-btn js-open-policy" data-policy="terms">Terms &amp; Conditions</button>
+                <button type="button" class="footer-policy-btn js-open-policy" data-policy="privacy">Privacy Policy</button>
+                <button type="button" class="footer-policy-btn js-open-policy" data-policy="returns">Return Policy</button>
+                <button type="button" class="footer-policy-btn js-open-policy" data-policy="delivery">Delivery Policy</button>
+                <button type="button" class="footer-policy-btn js-open-policy" data-policy="cancellation">Cancellation Policy</button>
+            </div>
+            <div class="footer-col footer-col-contact">
+                <h4>Contact Us</h4>
+                <p>Plot No 49, Pace City - 1,<br>Sector 37, Gurgaon, Haryana - 122004</p>
+                <p><a href="mailto:info@thenewme.com">info@thenewme.com</a></p>
+                <p><a href="tel:+919958975112">+91 9958975112</a></p>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 The New Me. All rights reserved.</p>
+            <p>A Healthier, Happier You, Always.</p>
+        </div>
+    </footer>
+    
+    <!-- Search Overlay -->
+    <div class="search-overlay hidden" id="searchOverlay">
+        <button class="search-close" id="searchClose" aria-label="Close search">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        <div class="search-overlay-content">
+            <h2 class="search-title">What are you looking for?</h2>
+            <form class="search-form" action="https://ilovenewme.com/" method="GET">
+                <input type="text" name="s" placeholder="Search articles, topics..." class="search-input-large" id="searchInputDesktop">
+                <button type="submit" class="search-submit-btn" aria-label="Submit search">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Accessible Policy Dialog Modal -->
+    <div class="policy-modal" id="policyModal" role="dialog" aria-modal="true" aria-labelledby="policyModalTitle" aria-hidden="true">
+        <div class="policy-modal-card">
+            <button type="button" class="policy-modal-close" id="policyModalClose" aria-label="Close dialog">&times;</button>
+            <h3 class="policy-modal-title" id="policyModalTitle">Policy Information</h3>
+            <p class="policy-modal-body" id="policyModalBody">
+                Official policies and guidelines are updated periodically. For specific questions regarding orders, shipments, returns, or support, please reach out directly to our dedicated customer wellness team.
+            </p>
+            <a href="contact.html" class="btn-editorial-primary" style="display:inline-flex;">Contact Support Team</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Policy Dialog Interaction
+        (function() {
+            const policyModal = document.getElementById('policyModal');
+            const policyClose = document.getElementById('policyModalClose');
+            const policyButtons = document.querySelectorAll('.js-open-policy');
+            const policyTitle = document.getElementById('policyModalTitle');
+            const policyBody = document.getElementById('policyModalBody');
+
+            const policyContentMap = {
+                faqs: {
+                    title: 'Frequently Asked Questions',
+                    body: 'Looking for answers about The New Me philosophy, the Reverse Aging book, or our clean botanical protein? Check our guides or get in touch with our team directly.'
+                },
+                terms: {
+                    title: 'Terms & Conditions',
+                    body: 'All content, guidance, and product information provided by The New Me are designed to foster sustainable lifestyle habits. View our full terms or connect with our support team.'
+                },
+                privacy: {
+                    title: 'Privacy Policy',
+                    body: 'We respect your data privacy. We never sell your personal information. Your contact details are securely used only to communicate orders and wellness insights.'
+                },
+                returns: {
+                    title: 'Return Policy',
+                    body: 'We take pride in unadulterated botanical quality. For any damaged or defective shipments, please contact our team within 7 days of delivery for immediate assistance.'
+                },
+                delivery: {
+                    title: 'Delivery Policy',
+                    body: 'Orders are processed from our Gurgaon fulfillment facility and shipped via verified express couriers across India within 3 to 5 business days.'
+                },
+                cancellation: {
+                    title: 'Cancellation Policy',
+                    body: 'Orders can be cancelled prior to dispatch by calling +91 9958975112 or sending an email with your order ID to info@thenewme.com.'
+                }
+            };
+
+            function openPolicyModal(key) {
+                if (!policyModal) return;
+                const data = policyContentMap[key] || { title: 'Policy Information', body: 'Please contact support for detailed policy documentation.' };
+                if (policyTitle) policyTitle.textContent = data.title;
+                if (policyBody) policyBody.textContent = data.body;
+                policyModal.classList.add('is-active');
+                policyModal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                if (policyClose) policyClose.focus();
+            }
+
+            function closePolicyModal() {
+                if (!policyModal) return;
+                policyModal.classList.remove('is-active');
+                policyModal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            policyButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const policyKey = this.getAttribute('data-policy');
+                    openPolicyModal(policyKey);
+                });
+            });
+
+            if (policyClose) {
+                policyClose.addEventListener('click', closePolicyModal);
+            }
+
+            if (policyModal) {
+                policyModal.addEventListener('click', function(e) {
+                    if (e.target === policyModal) closePolicyModal();
+                });
+            }
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && policyModal && policyModal.classList.contains('is-active')) {
+                    closePolicyModal();
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

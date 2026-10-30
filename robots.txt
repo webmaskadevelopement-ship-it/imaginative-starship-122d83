@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Canonical XML Sitemap
+Sitemap: https://thenewme.com/sitemap.xml

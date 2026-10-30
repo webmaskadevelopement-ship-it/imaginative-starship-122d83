@@ -1,0 +1,22 @@
+{
+  "name": "the-new-me-website",
+  "version": "2.0.0",
+  "description": "The New Me - Reverse Aging & Botanical Formulation Platform",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node server.mjs",
+    "serve": "node server.mjs",
+    "build": "echo 'Static production ready.'"
+  },
+  "keywords": [
+    "wellness",
+    "botanical-protein",
+    "longevity",
+    "clinical-botany",
+    "reverse-aging"
+  ],
+  "author": "The New Me",
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,2240 @@
+/* ========================================================
+   THE NEW ME - PROTEIN POWDER SCROLL GSAP ANIMATION
+   ======================================================== */
+
+/* Local High-Performance Font Loading: BBH Hegarty & BBH Bogle */
+@font-face {
+  font-family: 'BBH Hegarty';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('fonts/bbh-hegarty.ttf') format('truetype'),
+       url('https://fonts.gstatic.com/s/bbhhegarty/v1/yYLt0hbb_dvjg8talgb5vDHR.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'BBH Bogle';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('fonts/bbh-bogle.ttf') format('truetype'),
+       url('https://fonts.gstatic.com/s/bbhbogle/v1/GFDoWA58rVDJf-fOV9ALqw.ttf') format('truetype');
+}
+
+:root {
+  --protein-canvas-bg: #090e0b;
+}
+
+/* Ensure Lenis smooth scroll does not conflict with CSS scroll-behavior (/lenis skill) */
+html.lenis,
+html.lenis body,
+body.protein-page,
+html:has(body.protein-page) {
+  scroll-behavior: auto !important;
+}
+
+body.protein-page {
+  background-color: var(--protein-canvas-bg);
+  color: #ffffff;
+  overflow-x: clip;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure header sits on top with clean styling */
+body.protein-page .header {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: var(--header-height, 65px);
+  z-index: 10000;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Scroll Animation Section */
+.protein-scroll-section {
+  position: relative;
+  width: 100%;
+  margin-top: var(--header-height, 65px);
+  background-color: var(--protein-canvas-bg);
+}
+
+.protein-viewport {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 65px);
+  height: calc(100svh - 65px);
+  height: calc(100dvh - 65px);
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #142018 0%, #090e0b 80%);
+}
+
+#protein-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ========================================================
+   UNIFIED CLINICAL BOTANY WIDE SPECIFICATION CARD
+   Replaces two corner badges with a balanced, single wide HUD.
+   Eclipses watermark region with 100% mathematical precision.
+   Anti-slop editorial design: crisp hierarchy, zero AI clichés.
+   ======================================================== */
+.protein-wide-card {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(94%, 1060px);
+  z-index: 22;
+  background: #ffffff;
+  border: 1px solid rgba(20, 42, 22, 0.10);
+  border-radius: 18px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  padding: 14px 22px;
+  user-select: none;
+  pointer-events: auto;
+  box-shadow: 0 14px 34px -6px rgba(10, 25, 14, 0.16), 0 2px 8px rgba(10, 25, 14, 0.05);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.protein-wide-card:hover {
+  box-shadow: 0 18px 40px -6px rgba(10, 25, 14, 0.22), 0 4px 12px rgba(10, 25, 14, 0.08);
+  border-color: rgba(36, 83, 41, 0.22);
+}
+
+.wide-card-segment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2px 16px;
+  position: relative;
+  min-width: 0;
+}
+
+.wide-card-segment:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background: rgba(20, 42, 22, 0.08);
+}
+
+.wide-card-segment:first-child {
+  padding-left: 0;
+}
+
+.wide-card-segment:last-child {
+  padding-right: 0;
+}
+
+.wide-kicker {
+  font-family: var(--font-body, 'Inter', -apple-system, sans-serif);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: #245329;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 5px;
+  white-space: nowrap;
+}
+
+.wide-kicker::before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #245329;
+  flex-shrink: 0;
+}
+
+.wide-value {
+  font-family: var(--font-body, 'Inter', -apple-system, sans-serif);
+  font-size: 0.96rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: #111b13;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.wide-detail {
+  font-family: var(--font-body, 'Inter', -apple-system, sans-serif);
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: #5d6f61;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  white-space: nowrap;
+  margin-top: 4px;
+}
+
+/* Tablet Layout (2x2 Grid) */
+@media (max-width: 900px) and (min-width: 601px) {
+  .protein-wide-card {
+    width: min(92%, 680px);
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 12px;
+    column-gap: 16px;
+    padding: 14px 18px;
+    bottom: 20px;
+  }
+
+  .wide-card-segment {
+    padding: 4px 10px;
+  }
+
+  .wide-card-segment:nth-child(1)::after,
+  .wide-card-segment:nth-child(3)::after {
+    top: 5%;
+    height: 90%;
+  }
+
+  .wide-card-segment:nth-child(2)::after,
+  .wide-card-segment:nth-child(4)::after {
+    display: none;
+  }
+}
+
+/* Mobile Layout (Compact 2x2 Grid) */
+@media (max-width: 600px) {
+  .protein-wide-card {
+    width: calc(100% - 20px);
+    grid-template-columns: 1fr 1fr;
+    row-gap: 10px;
+    column-gap: 12px;
+    padding: 11px 14px;
+    bottom: 12px;
+    border-radius: 14px;
+  }
+
+  .wide-card-segment {
+    padding: 2px 4px;
+  }
+
+  .wide-card-segment:nth-child(1)::after,
+  .wide-card-segment:nth-child(3)::after {
+    top: 5%;
+    height: 90%;
+  }
+
+  .wide-card-segment:nth-child(2)::after,
+  .wide-card-segment:nth-child(4)::after {
+    display: none;
+  }
+
+  .wide-kicker {
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 3px;
+    gap: 4px;
+  }
+
+  .wide-kicker::before {
+    width: 4px;
+    height: 4px;
+  }
+
+  .wide-value {
+    font-size: 0.82rem;
+    letter-spacing: -0.01em;
+  }
+
+  .wide-detail {
+    font-size: 0.58rem;
+    margin-top: 2px;
+  }
+}
+
+/* Minimal Ambient Overlay / Loading Indicator */
+.protein-loader {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(15, 25, 18, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 7px 16px;
+  border-radius: 30px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #a3c2a6;
+  z-index: 20;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.protein-loader.is-loaded {
+  opacity: 0;
+  transform: translateX(-50%) translateY(12px);
+  pointer-events: none;
+}
+
+.protein-loader-spinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #4ade80;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Minimal Floating Scroll Hint */
+.protein-scroll-hint {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 8px 18px;
+  border-radius: 30px;
+  z-index: 20;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  animation: pulseHint 2.4s ease-in-out infinite;
+}
+
+.protein-scroll-hint.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes pulseHint {
+  0%, 100% { opacity: 0.85; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 0.45; transform: translateX(-50%) translateY(4px); }
+}
+
+/* Sleek Final Frame Hold Indicator */
+.protein-hold-indicator {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%) translateY(14px);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #e6f7ea;
+  background: rgba(14, 28, 18, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(74, 222, 128, 0.35);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6), 0 0 16px rgba(74, 222, 128, 0.2);
+  padding: 8px 20px;
+  border-radius: 30px;
+  z-index: 24;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.protein-hold-indicator.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.protein-hold-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #4ade80;
+  box-shadow: 0 0 8px #4ade80;
+  animation: pulseDot 1.8s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+/* Sleek Minimal Scrubber Line at bottom of pinned viewport */
+.protein-progress-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3.5px;
+  background: rgba(255, 255, 255, 0.08);
+  z-index: 25;
+}
+
+.protein-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #2a4b2c 0%, #408a5b 50%, #d4af37 100%);
+  transition: width 0.05s linear;
+}
+
+/* Minimal Chapter Indicator */
+.protein-chapters-hud {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  display: flex;
+  gap: 6px;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chapter-pip {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.45);
+  padding: 3px 8px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.chapter-pip.active {
+  color: #ffffff;
+  background: rgba(42, 75, 44, 0.9);
+  box-shadow: 0 0 10px rgba(64, 138, 91, 0.4);
+}
+
+@media (max-width: 600px) {
+  .protein-chapters-hud {
+    top: 12px;
+    right: 14px;
+    gap: 4px;
+    padding: 4px 8px;
+  }
+  .chapter-pip {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+  }
+}
+
+/* Clean Footer styling */
+body.protein-page .footer {
+  background-color: var(--bg-off-white, #f8f7f2);
+  color: #1a1a1a;
+  position: relative;
+  z-index: 10;
+}
+
+/* ========================================================
+   BOTANICAL INGREDIENT TEXT OVERLAYS (HUD)
+   ======================================================== */
+.protein-text-overlays {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 23 !important;
+  overflow: hidden !important;
+}
+
+.scroll-overlay-card {
+  position: absolute !important;
+  max-width: 440px;
+  width: calc(100% - 32px);
+  padding: 1.35rem 1.6rem;
+  background: rgba(8, 16, 11, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(31, 62, 33, 0.25);
+  border-radius: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(22px);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.45s;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.scroll-overlay-card.is-active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+/* Spatial positioning (Desktop) */
+.overlay-bottom-left {
+  bottom: 44px;
+  left: 44px;
+}
+
+.overlay-top-right {
+  top: 76px;
+  right: 44px;
+}
+
+.overlay-top-left {
+  top: 76px;
+  left: 44px;
+}
+
+.overlay-center-bottom {
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(22px);
+  max-width: 620px;
+  width: calc(100% - 40px);
+}
+
+.overlay-center-bottom.is-active {
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+/* Typography styles */
+.overlay-eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.overlay-glow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px currentColor;
+}
+
+.overlay-eyebrow {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #a7f3d0;
+}
+
+.overlay-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.65rem, 2.8vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.18;
+  color: #ffffff;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.65);
+  margin: 0 0 10px 0;
+}
+
+.overlay-subheading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.overlay-description {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  margin: 0 0 14px 0;
+}
+
+.overlay-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  background: rgba(20, 42, 22, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fde68a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.overlay-dot-sep {
+  opacity: 0.5;
+}
+
+/* Call to action buttons on final card */
+.overlay-cta-primary {
+  padding: 10px 22px;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: #142a16;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.overlay-cta-primary:hover {
+  background: #e6f7ea;
+  transform: translateY(-2px);
+}
+
+.overlay-cta-secondary {
+  padding: 10px 22px;
+  border-radius: 9999px;
+  background: #142a16;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.overlay-cta-secondary:hover {
+  background: #1f3e21;
+  border-color: #4ade80;
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments for Mobile Viewports */
+@media (max-width: 768px) {
+  .scroll-overlay-card {
+    max-width: calc(100% - 32px) !important;
+    width: calc(100% - 32px) !important;
+    left: 16px !important;
+    right: 16px !important;
+    margin: 0 auto !important;
+    padding: 1.05rem 1.25rem !important;
+    border-radius: 1.25rem !important;
+  }
+
+  .overlay-bottom-left {
+    bottom: 64px !important;
+    top: auto !important;
+    left: 16px !important;
+    right: 16px !important;
+  }
+
+  .overlay-top-right {
+    top: 54px !important;
+    bottom: auto !important;
+    left: 16px !important;
+    right: 16px !important;
+    text-align: left !important;
+  }
+
+  .overlay-top-right .overlay-eyebrow-row {
+    justify-content: flex-start !important;
+  }
+
+  .overlay-top-right .overlay-description,
+  .overlay-top-right .overlay-pill-badge {
+    margin-left: 0 !important;
+  }
+
+  .overlay-top-left {
+    top: 54px !important;
+    bottom: auto !important;
+    left: 16px !important;
+    right: 16px !important;
+  }
+
+  .overlay-center-bottom {
+    bottom: 44px !important;
+    top: auto !important;
+    left: 16px !important;
+    right: 16px !important;
+    transform: translateY(22px) !important;
+    width: calc(100% - 32px) !important;
+  }
+
+  .overlay-center-bottom.is-active {
+    transform: translateY(0) !important;
+  }
+
+  .overlay-heading {
+    font-size: 1.35rem !important;
+    line-height: 1.22 !important;
+    margin-bottom: 6px !important;
+  }
+
+  .overlay-description {
+    font-size: 12px !important;
+    margin-bottom: 10px !important;
+    line-height: 1.48 !important;
+  }
+
+  .overlay-pill-badge {
+    padding: 4px 10px !important;
+    font-size: 10px !important;
+  }
+}
+
+/* ========================================================
+   SCROLL-DRIVEN EDITORIAL CHAPTER OVERLAYS
+   Awwwards-grade multi-element typographic architecture.
+   Strict 2-line title limit, Swiss tabular telemetry grid.
+   ======================================================== */
+.protein-editorial-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 15;
+  box-sizing: border-box;
+}
+
+.editorial-chapter {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+  max-width: min(88vw, 960px);
+  padding: 0 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+/* Centered Stage Title Distribution (Commands the Video Stage Center) */
+.editorial-chapter[data-chapter="1"],
+.editorial-chapter[data-chapter="2"],
+.editorial-chapter[data-chapter="3"],
+.editorial-chapter[data-chapter="4"],
+.editorial-chapter[data-chapter="5"],
+.editorial-chapter[data-chapter="6"] {
+  top: 50%;
+}
+
+.direct-kicker,
+.direct-tagline {
+  display: none !important; /* Subheadlines and kickers have moved to the new lower dock */
+}
+
+.direct-hero-title {
+  font-family: 'BBH Hegarty', 'BBH Bogle', 'Playfair Display', Georgia, sans-serif;
+  font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 0.98;
+  color: #ffffff;
+  margin: 0 auto;
+  text-transform: uppercase;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+  text-wrap: balance;
+  width: 100%;
+  max-width: 100%;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .editorial-chapter {
+    width: 100%;
+    max-width: calc(100% - 32px);
+    padding: 0 0.5rem;
+    gap: 0;
+  }
+
+  /* Mobile Stepped Downward Trajectory Sequence across All 6 Video Shots */
+  /* Starts high at top, then steps down shot-by-shot */
+  .editorial-chapter[data-chapter="1"] {
+    top: 20%;
+  }
+  .editorial-chapter[data-chapter="2"] {
+    top: 26%;
+  }
+  .editorial-chapter[data-chapter="3"] {
+    top: 32%;
+  }
+  .editorial-chapter[data-chapter="4"] {
+    top: 38%;
+  }
+  .editorial-chapter[data-chapter="5"] {
+    top: 44%;
+  }
+  .editorial-chapter[data-chapter="6"] {
+    top: 50%;
+  }
+
+  .direct-hero-title {
+    font-size: clamp(2rem, 8.5vw, 2.75rem);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* ========================================================
+   ORIGIN GALLERY MOBILE ASPECT RATIO
+   Enforces a balanced 16:10 photographic ratio on mobile
+   instead of a squished 2.4:1 banner.
+   ======================================================== */
+.origin-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  height: auto;
+}
+
+@media (min-width: 640px) {
+  .origin-thumb {
+    width: 11rem; /* 176px (sm:w-44) */
+    height: 9rem;  /* 144px (sm:h-36) */
+    aspect-ratio: auto;
+  }
+}
+
+/* ========================================================
+   DUAL WHITE CARD OVERLAY ARCHITECTURE (100% Watermark Occlusion)
+   Solid #FFFFFF plinths positioned to permanently occlude
+   corner AI watermarks and logos (Bottom-Left & Bottom-Right).
+   ======================================================== */
+.protein-white-card {
+  position: absolute;
+  bottom: clamp(24px, 3.5vh, 48px);
+  z-index: 35;
+  width: clamp(290px, 22vw, 360px);
+  min-height: 175px;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 16px 36px -8px rgba(10, 25, 14, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 18px 20px;
+  box-sizing: border-box;
+  pointer-events: auto;
+  user-select: none;
+  transform: translateZ(0);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.protein-white-card:hover {
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: 0 20px 42px -6px rgba(10, 25, 14, 0.16), 0 4px 12px rgba(0, 0, 0, 0.06);
+  border-color: rgba(36, 83, 41, 0.25);
+}
+
+/* Left Card: Nutritional Facts */
+.protein-nutrition-card {
+  left: clamp(24px, 3.5vw, 56px);
+}
+
+/* Right Card: Chapter Index */
+.protein-chapter-card {
+  right: clamp(24px, 3.5vw, 56px);
+}
+
+.white-card-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding-bottom: 8px;
+}
+
+.card-kicker {
+  font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, sans-serif);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: #245329;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1;
+}
+
+.card-kicker-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #245329;
+  flex-shrink: 0;
+}
+
+.card-badge-pill {
+  font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, sans-serif);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #245329;
+  background: #eef6f0;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Nutritional Metrics Grid */
+.nutrition-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.metric-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metric-val {
+  font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, sans-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #111b13;
+  line-height: 1.1;
+}
+
+.metric-lbl {
+  font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, sans-serif);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b7c6e;
+  line-height: 1.15;
+}
+
+.nutrition-facts-callout {
+  padding-top: 4px;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.nutrition-callout-text {
+  font-family: var(--font-body, 'Inter', -apple-system, sans-serif);
+  font-size: 0.72rem;
+  line-height: 1.40;
+  color: #4a5e4d;
+  margin: 0;
+}
+
+/* Chapter Index Specific Styling */
+.chapter-step-counter {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #245329;
+}
+
+.chapter-cur {
+  color: #245329;
+}
+
+.chapter-slash {
+  font-size: 0.70rem;
+  color: rgba(0, 0, 0, 0.30);
+  margin: 0 1px;
+}
+
+.chapter-max {
+  font-size: 0.70rem;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.chapter-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chapter-heading {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: #111b13;
+  line-height: 1.2;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.chapter-subline {
+  font-family: var(--font-body, 'Inter', -apple-system, sans-serif);
+  font-size: 0.72rem;
+  line-height: 1.40;
+  color: #4a5e4d;
+  margin: 0;
+}
+
+.chapter-pills-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.chapter-nav-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.14);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.chapter-nav-dot.is-active {
+  width: 22px;
+  border-radius: 9999px;
+  background: #245329;
+}
+
+.chapter-nav-dot:hover:not(.is-active) {
+  background: rgba(36, 83, 41, 0.50);
+}
+
+/* Tablet & Mobile Media Queries */
+@media (max-width: 1024px) {
+  .protein-white-card {
+    width: clamp(260px, 30vw, 320px);
+    min-height: 165px;
+    padding: 14px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* On mobile <=768px: Hide desktop dual white cards; reinstate original mobile-first specimen dock */
+  .protein-white-card {
+    display: none !important;
+  }
+
+  .protein-specimen-dock {
+    display: block !important;
+  }
+
+  .editorial-chapter {
+    top: 36% !important;
+  }
+}
+
+/* ========================================================
+   PINNED EDITORIAL SPECIMEN DOCK (Mobile-First Architecture)
+   ======================================================== */
+.protein-specimen-dock {
+  display: none; /* Desktop uses .protein-white-card overlays; mobile <=768px displays this pinned footer dock */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: clamp(108px, 13vh, 126px);
+  background-color: #FFFFFF;
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.03);
+  z-index: 35;
+  box-sizing: border-box;
+  user-select: none;
+  pointer-events: auto;
+  transform: translateZ(0);
+}
+
+.dock-inner-container {
+  max-width: 1360px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 3vw, 2.5rem);
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: clamp(1.5rem, 2.5vw, 2.5rem);
+}
+
+/* Dynamic Panels Stack */
+.dock-panels-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.dock-panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 2.5vw, 3rem);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: auto;
+  transform: translateY(10px);
+  filter: blur(6px);
+  will-change: transform, opacity, filter;
+}
+
+.dock-panel.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  filter: blur(0px);
+}
+
+/* Col 1: Identity & Subheadline */
+.dock-identity-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  flex-shrink: 0;
+  min-width: 260px;
+}
+
+.dock-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #2a4b2c;
+  line-height: 1;
+}
+
+.dock-kicker-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #2a4b2c;
+  flex-shrink: 0;
+}
+
+.dock-subheadline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+  font-weight: 700;
+  color: #111b13;
+  line-height: 1.18;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Col 2: Creative Narrative & Spec Pills */
+.dock-narrative-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+  max-width: 580px;
+}
+
+.dock-benefit-text {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(0.76rem, 0.9vw, 0.84rem);
+  line-height: 1.45;
+  color: #4a5e4d;
+  margin: 0;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.dock-spec-pills {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.dock-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2.5px 8px;
+  border-radius: 100px;
+  background: #eef6f0;
+  border: 1px solid rgba(42, 75, 44, 0.15);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #2a4b2c;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* Col 3: Integrated Swiss Telemetry Wing */
+.dock-telemetry-wing {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-left: 1px solid rgba(0, 0, 0, 0.07);
+  padding-left: clamp(1rem, 1.75vw, 1.75rem);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.dock-telemetry-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.dock-telemetry-label {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #768a7a;
+  line-height: 1;
+}
+
+.dock-percentage {
+  font-family: 'SF Mono', 'Menlo', 'Courier New', monospace;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #111b13;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.dock-progress-track {
+  width: 50px;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.dock-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: #2a4b2c;
+  border-radius: 2px;
+  transition: width 0.05s linear;
+}
+
+.dock-step-chips {
+  display: flex;
+  gap: 3px;
+}
+
+.dock-chip {
+  font-family: 'SF Mono', 'Menlo', monospace;
+  font-size: 0.58rem;
+  font-weight: 600;
+  color: #8fa093;
+  padding: 2px 4px;
+  border-radius: 3px;
+  transition: all 0.25s ease;
+  line-height: 1;
+}
+
+.dock-chip.active {
+  color: #ffffff;
+  background-color: #2a4b2c;
+  font-weight: 700;
+}
+
+/* Responsive adjustments: Desktop & 16:9 Tablet Engine */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .dock-inner-container {
+    gap: 1rem;
+    padding: 0 1.25rem;
+  }
+  .dock-panel {
+    gap: 1rem;
+  }
+  .dock-identity-col {
+    min-width: 200px;
+  }
+  .dock-subheadline {
+    font-size: 1.0rem;
+    white-space: nowrap;
+  }
+  .dock-narrative-col {
+    max-width: 360px;
+  }
+  .dock-benefit-text {
+    font-size: 0.70rem;
+    line-height: 1.35;
+    -webkit-line-clamp: 3;
+  }
+  .dock-telemetry-wing {
+    padding-left: 0.85rem;
+    gap: 8px;
+  }
+  .dock-step-chips {
+    gap: 2px;
+  }
+  .dock-chip {
+    padding: 2px 3px;
+    font-size: 0.54rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .protein-specimen-dock {
+    height: clamp(124px, 16vh, 142px);
+    padding: 14px 18px calc(14px + env(safe-area-inset-bottom, 0px)) 18px;
+    box-sizing: border-box;
+  }
+
+  .dock-inner-container {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
+
+  .dock-telemetry-wing {
+    display: none;
+  }
+
+  .dock-panels-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .dock-panel {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-areas:
+      "kicker pills"
+      "subhead subhead"
+      "narrative narrative";
+    grid-template-columns: 1fr auto;
+    align-content: center;
+    row-gap: 3.5px;
+    column-gap: 8px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .dock-identity-col,
+  .dock-narrative-col {
+    display: contents !important;
+  }
+
+  .dock-kicker {
+    grid-area: kicker;
+    align-self: center;
+    font-size: 0.60rem;
+    letter-spacing: 0.12em;
+    gap: 5px;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+  }
+
+  .dock-kicker-dot {
+    width: 4.5px;
+    height: 4.5px;
+  }
+
+  .dock-spec-pills {
+    grid-area: pills;
+    justify-self: end;
+    align-self: center;
+    display: inline-flex;
+    gap: 4px;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .dock-pill {
+    padding: 2px 7px;
+    font-size: 0.60rem;
+    line-height: 1.2;
+  }
+
+  /* Show primary pill on mobile header row */
+  .dock-pill:not(:first-child) {
+    display: none;
+  }
+
+  .dock-subheadline {
+    grid-area: subhead;
+    font-size: clamp(0.86rem, 3.8vw, 0.98rem);
+    line-height: 1.22;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    color: #111b13;
+  }
+
+  .dock-benefit-text {
+    grid-area: narrative;
+    font-size: 0.71rem;
+    line-height: 1.36;
+    color: #4a5e4d;
+    margin: 0;
+    padding: 0;
+    white-space: normal !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
+    max-width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  /* Micro Mobile Progress Bar anchored to top of dock */
+  .protein-specimen-dock::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--dock-mobile-progress, 0%);
+    height: 2px;
+    background: #2a4b2c;
+    z-index: 40;
+    transition: width 0.05s linear;
+  }
+}
+
+/* ========================================================
+   THE NEW ME — REACT BITS FLUID GLASS FILL LOADER
+   Harmonic Multi-Layer Wave Canvas & Pure Bloom Dissolve
+   ======================================================== */
+.protein-wave-loader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 99999;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: auto;
+  transform: translateZ(0);
+  will-change: opacity, transform, filter;
+}
+
+/* Stage 1: Base Pristine White Frame & Centered Architecture */
+.loader-glass-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.loader-stage-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  max-width: min(92vw, 840px);
+  margin: 0 auto;
+}
+
+/* Official New Me Brand Heart Emblem */
+.loader-brand-lens {
+  position: relative;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-brand-lens::before {
+  content: '';
+  position: absolute;
+  width: 140%;
+  height: 140%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0) 75%);
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(12px);
+}
+
+.loader-brand-logo {
+  width: clamp(90px, 11vw, 140px);
+  height: auto;
+  display: block;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+  animation: brandLogoFloat 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes brandLogoFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.015);
+  }
+}
+
+.logo-dark {
+  filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.85))
+          drop-shadow(0 0 32px rgba(255, 255, 255, 0.55))
+          drop-shadow(0 8px 24px rgba(0, 0, 0, 0.22));
+}
+
+/* Stage 2: React Bits Harmonic Fluid Wave Canvas */
+.loader-wave-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: block;
+  pointer-events: none;
+  transform: translateZ(0);
+}
+
+/* Dynamic Liquid Submerged Layer (Pinned and masked to fluid level) */
+.loader-revealed-layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0%;
+  overflow: hidden;
+  z-index: 15;
+  pointer-events: none;
+  will-change: height;
+}
+
+.loader-revealed-inner {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* Reduced motion: skip the wave choreography entirely, keep the calm brand frame */
+@media (prefers-reduced-motion: reduce) {
+  .loader-wave-canvas,
+  .loader-revealed-layer {
+    display: none;
+  }
+}
+
+/* ========================================================
+   REACT BITS INFINITE TESTIMONIAL MARQUEE
+   Smooth, continuous, hardware-accelerated review ticker
+   ======================================================== */
+.reviews-marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 16px 0 24px 0;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.reviews-marquee-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  will-change: transform;
+  animation: reviewsMarquee 34s linear infinite;
+}
+
+.reviews-marquee-container:hover .reviews-marquee-track,
+.reviews-marquee-container:active .reviews-marquee-track {
+  animation-play-state: paused;
+}
+
+.reviews-marquee-card {
+  width: clamp(280px, 80vw, 360px);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@keyframes reviewsMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .reviews-marquee-track {
+    gap: 16px;
+    animation-duration: 26s;
+  }
+  .reviews-marquee-card {
+    width: 290px;
+    padding: 18px 16px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reviews-marquee-track {
+    animation: none !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    width: 100%;
+  }
+  .reviews-marquee-card {
+    scroll-snap-align: start;
+  }
+}
+
+/* ========================================================
+   BALANCED POST-SCROLL MOBILE ARCHITECTURE (<= 768px)
+   Matches Home Page section cadence with sleek minimal density.
+   Zero buggy open-down menus on mobile.
+   ======================================================== */
+@media (max-width: 768px) {
+  /* 1. Calm, minimal vertical padding across all post-scroll sections */
+  #nourish-wellness,
+  #benefits,
+  #story-of-product,
+  #ingredients,
+  #comparison,
+  #sensory,
+  #nutrition,
+  #reviews,
+  #acquisition {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+
+  /* 2. Scaled Section Headers & Typographic Rhythm */
+  main section .site-container > .flex.flex-col.items-center,
+  main section .site-container > .flex.flex-col.md\:flex-row {
+    margin-bottom: 22px !important;
+  }
+
+  main section h2 {
+    font-size: clamp(1.45rem, 5.5vw, 1.95rem) !important;
+    line-height: 1.22 !important;
+    letter-spacing: -0.015em !important;
+  }
+
+  main section p {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* 3. Section 01: Nourish Wellness - 2x2 Pillar Cards & No Jump Filter */
+  #nourish-wellness .grid.sm\:grid-cols-2 {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    margin-bottom: 0 !important;
+  }
+  #nourish-wellness .grid.sm\:grid-cols-2 .editorial-card {
+    padding: 14px 12px !important;
+    border-radius: 14px !important;
+  }
+  #nourish-wellness .grid.sm\:grid-cols-2 .text-3xl {
+    font-size: 1.6rem !important;
+    margin-bottom: 2px !important;
+  }
+  /* Disable open-down interactive filter console on mobile to avoid layout popping */
+  #nourish-wellness .max-w-3xl.mx-auto.bg-white {
+    display: none !important;
+  }
+
+  /* 4. Section 02: Benefits Bento Grid Compact Density */
+  #benefits .grid.lg\:grid-cols-12 {
+    gap: 16px !important;
+  }
+  #benefits .editorial-card {
+    padding: 18px 16px !important;
+    border-radius: 16px !important;
+  }
+  #benefits .relative.my-4.rounded-2xl {
+    min-height: 200px !important;
+    margin: 10px 0 !important;
+  }
+  #benefits .relative.my-4.rounded-2xl img {
+    max-height: 200px !important;
+  }
+  #benefits .mt-12.p-6.sm\:p-8 {
+    margin-top: 20px !important;
+    padding: 16px !important;
+    border-radius: 16px !important;
+    gap: 14px !important;
+  }
+
+  /* 5. Section 03: Story of Product / Provenance Chronicle (Ultra-Compact Touch-Snap Strip) */
+  #story-of-product .site-container > .flex.flex-col.items-center {
+    margin-bottom: 18px !important;
+  }
+  #story-of-product h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.25 !important;
+  }
+  #story-of-product p.font-sans {
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+    margin-top: 6px !important;
+  }
+  #story-of-product .grid.lg\:grid-cols-12 {
+    gap: 14px !important;
+  }
+  /* Manifesto card: compact summary, hide redundant duplicate paragraph & quote on mobile */
+  #story-of-product .lg\:col-span-6:first-child .editorial-card {
+    padding: 14px 14px !important;
+    border-radius: 14px !important;
+  }
+  #story-of-product .lg\:col-span-6:first-child .editorial-card h3 {
+    font-size: 15px !important;
+    margin-bottom: 6px !important;
+  }
+  #story-of-product .lg\:col-span-6:first-child .editorial-card p.text-sm {
+    font-size: 11.5px !important;
+    line-height: 1.4 !important;
+    margin-bottom: 0 !important;
+  }
+  #story-of-product .lg\:col-span-6:first-child .editorial-card p.mb-6,
+  #story-of-product .lg\:col-span-6:first-child .editorial-card > div.rounded-2xl {
+    display: none !important;
+  }
+  /* 3 Origin Plates: Hardware-accelerated horizontal touch-snap strip (React Bits Pattern) */
+  #story-of-product .grid.lg\:grid-cols-12 > div.lg\:col-span-6:last-child {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 10px !important;
+    padding: 2px 2px 10px 2px !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+  }
+  #story-of-product .grid.lg\:grid-cols-12 > div.lg\:col-span-6:last-child::-webkit-scrollbar {
+    display: none !important;
+  }
+  #story-of-product .grid.lg\:grid-cols-12 > div.lg\:col-span-6:last-child > .editorial-card {
+    min-width: 235px !important;
+    max-width: 245px !important;
+    flex-shrink: 0 !important;
+    scroll-snap-align: start !important;
+    padding: 12px 10px !important;
+    border-radius: 14px !important;
+    gap: 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+  }
+  #story-of-product .origin-thumb {
+    width: 100% !important;
+    height: 85px !important;
+    aspect-ratio: auto !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+  }
+  #story-of-product .origin-thumb img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+  #story-of-product .editorial-card span.tracking-widest {
+    font-size: 9px !important;
+  }
+  #story-of-product .editorial-card h4 {
+    font-size: 13px !important;
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+    line-height: 1.25 !important;
+  }
+  #story-of-product .editorial-card p {
+    font-size: 11px !important;
+    line-height: 1.35 !important;
+    color: #555555 !important;
+  }
+
+  /* 6. Section 04: Ingredients - 2x2 Grid with Zero Open-Down Menus */
+  #ingredients .grid.grid-cols-1 {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+  #ingredients .ingredient-card {
+    border-radius: 14px !important;
+    cursor: default !important;
+  }
+  #ingredients .ingredient-card .h-52 {
+    height: 110px !important;
+  }
+  #ingredients .ingredient-card .p-6 {
+    padding: 12px !important;
+  }
+  #ingredients .ingredient-card h3 {
+    font-size: 14px !important;
+    margin-top: 2px !important;
+    margin-bottom: 4px !important;
+    line-height: 1.2 !important;
+  }
+  #ingredients .ingredient-card p {
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+    margin-top: 0 !important;
+  }
+  #ingredients .ingredient-card span.text-\[11px\] {
+    font-size: 9px !important;
+    letter-spacing: 0.08em !important;
+  }
+  /* Suppress accordion chevron and clinical button on mobile (no jumpy open-down menus) */
+  #ingredients .ingredient-card .absolute.bottom-3 {
+    display: none !important;
+    pointer-events: none !important;
+  }
+  #ingredients .ingredient-card [id$="-detail"] {
+    display: none !important;
+  }
+  #ingredients .mt-10 {
+    margin-top: 14px !important;
+    padding: 14px 16px !important;
+    border-radius: 16px !important;
+    gap: 12px !important;
+  }
+  #ingredients .mt-10 .w-12 {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 10px !important;
+  }
+  #ingredients .mt-10 h4 {
+    font-size: 14px !important;
+  }
+  #ingredients .mt-10 p {
+    font-size: 11.5px !important;
+  }
+
+  /* 7. Section 05: Comparison Standard - Compact 2x2 Distinction Matrix */
+  #comparison .site-container > .flex.flex-col.items-center {
+    margin-bottom: 18px !important;
+  }
+  #comparison h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.25 !important;
+  }
+  #comparison p.font-sans {
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+    margin-top: 6px !important;
+  }
+  #col-regular {
+    display: none !important;
+  }
+  #col-newme {
+    padding: 16px 14px !important;
+    border-radius: 16px !important;
+    border-width: 1.5px !important;
+  }
+  #col-newme .pb-6.border-b {
+    padding-bottom: 10px !important;
+    margin-bottom: 12px !important;
+  }
+  #col-newme h3 {
+    font-size: 17px !important;
+  }
+  /* 2x2 Feature Distinction Grid */
+  #col-newme .space-y-6 {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    margin: 0 !important;
+  }
+  #col-newme .space-y-6 > div {
+    padding: 10px 10px !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+    background: #f8f7f2 !important;
+    margin: 0 !important;
+  }
+  #col-newme .space-y-6 > div svg {
+    width: 17px !important;
+    height: 17px !important;
+    margin: 0 !important;
+    color: #2a4b2c !important;
+  }
+  #col-newme .space-y-6 h4 {
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+    color: #1a1a1a !important;
+    margin: 0 !important;
+  }
+  #col-newme .space-y-6 p {
+    font-size: 10.5px !important;
+    line-height: 1.35 !important;
+    color: #555555 !important;
+    margin-top: 2px !important;
+  }
+  #col-newme .mt-8.pt-6.border-t {
+    margin-top: 12px !important;
+    padding-top: 10px !important;
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+  /* Suppress redundant duplicate checkout CTA button on mobile */
+  #col-newme .mt-8.pt-6.border-t button {
+    display: none !important;
+  }
+  #col-newme .mt-8.pt-6.border-t span {
+    font-size: 11px !important;
+    color: #555555 !important;
+    font-weight: 500 !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* 8. Section 06: Sensory Experience & Rituals */
+  #sensory .grid.lg\:grid-cols-12 {
+    gap: 18px !important;
+  }
+  #sensory .editorial-card.h-\[420px\] {
+    height: 240px !important;
+    border-radius: 16px !important;
+  }
+  #sensory #routine .editorial-card {
+    padding: 14px 12px !important;
+    border-radius: 14px !important;
+    gap: 12px !important;
+  }
+  #sensory #routine .w-12.h-12 {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 10px !important;
+  }
+
+  /* 9. Section 07: Nutrition Panel - Clean 4 Macro Badges & Zero Open-Down Table */
+  #nutrition .inline-flex.max-w-full {
+    display: none !important;
+  }
+  #nutrition #nutrition-full-view {
+    display: none !important;
+  }
+  #nutrition #nutrition-summary-view {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    margin-bottom: 0 !important;
+  }
+  #nutrition #nutrition-summary-view .editorial-card {
+    padding: 14px 10px !important;
+    border-radius: 14px !important;
+  }
+  #nutrition #nutrition-summary-view .text-3xl {
+    font-size: 1.65rem !important;
+    margin-top: 4px !important;
+    margin-bottom: 2px !important;
+  }
+  #nutrition #nutrition-summary-view span.text-xs {
+    font-size: 10.5px !important;
+  }
+
+  /* 10. Section 08: Reviews Rating Pill */
+  #reviews .site-container > .flex.flex-col.md\:flex-row {
+    margin-bottom: 16px !important;
+    gap: 12px !important;
+  }
+  #reviews .flex.items-center.gap-4.p-4 {
+    padding: 10px 14px !important;
+    border-radius: 14px !important;
+    width: fit-content !important;
+  }
+  #reviews .flex.items-center.gap-4.p-4 .text-3xl {
+    font-size: 1.5rem !important;
+  }
+
+  /* 11. Section 09: Direct Acquisition Module (Pristine Uncropped Artwork) */
+  #acquisition .site-container {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+  #acquisition .editorial-card {
+    padding: 20px 16px !important;
+    gap: 20px !important;
+    border-radius: 20px !important;
+  }
+  #acquisition .product-showcase-box {
+    width: 100% !important;
+    max-width: 320px !important;
+    aspect-ratio: 4 / 5 !important;
+    max-height: 340px !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    margin: 0 auto !important;
+    border: 1px solid #e5e5e0 !important;
+    background: #fdfbf7 !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04) !important;
+  }
+  #acquisition .product-showcase-box img {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: 0 !important;
+    display: block !important;
+  }
+  #acquisition .grid-cols-3 {
+    width: 100% !important;
+    max-width: 340px !important;
+  }
+  #acquisition .gap-2\.5 {
+    gap: 8px !important;
+  }
+  #acquisition .bundle-option {
+    padding: 10px 12px !important;
+    border-radius: 12px !important;
+    min-height: 48px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  #acquisition .bundle-option span.font-bold.text-sm {
+    font-size: 13px !important;
+  }
+  #acquisition .bundle-option span.text-xs {
+    font-size: 11px !important;
+  }
+  #acquisition button[onclick="openCartDrawer()"] {
+    min-height: 48px !important;
+    padding: 12px 14px !important;
+    font-size: 11.5px !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  /* 12. Eliminate white margin gap bug above footer */
+  .footer {
+    margin-top: 0 !important;
+    background-color: #f8f7f2 !important;
+    border-top: 1px solid #e0e0e0 !important;
+  }
+}
+
+
+/* ============================================================
+   PACKSHOT REVEAL LAYER — Unified single-section architecture
+   Phase 0 of the pinned canvas ScrollTrigger (Desktop 16:9 only):
+   pill packshot -> scroll expansion -> white bloom -> Pea Isolate
+   frame 82, all inside #protein-scroll-section.
+   ============================================================ */
+
+/* Reveal layer sits INSIDE .protein-viewport (overflow hidden) and covers the
+   canvas, editorial titles (z 15), specimen dock (z 25) and white cards (z 35)
+   so video-phase UI stays hidden until the bloom hands off. */
+.se-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #ffffff;
+  z-index: 38;
+  display: none; /* mobile 9:16 keeps its original full timeline */
+}
+
+@media (min-width: 769px) {
+  .se-stage { display: block; }
+}
+
+/* The expanding clip frame */
+.se-frame {
+  position: absolute;
+  inset: 0;
+  /* Start: pill in centre, ~42vw × 58vh */
+  clip-path: inset(21% 29% 21% 29% round 24px);
+  will-change: clip-path;
+  transition: none; /* driven by JS rAF, not CSS transition */
+}
+
+.se-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center;
+  will-change: transform;
+  /* Start zoomed in; JS unzooms as clip expands */
+  transform: scale(1.35);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Dark gradient scrim — fades in as image expands */
+.se-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.08) 45%, rgba(0,0,0,0.30) 100%);
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* Overlay copy — appears near full expansion */
+.se-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  padding: 0 5% 6%;
+  opacity: 0;
+  will-change: opacity, transform;
+  transform: translateY(18px);
+}
+
+.se-overlay-title {
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0 0 0.4em;
+}
+
+.se-overlay-sub {
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  font-size: clamp(0.85rem, 1.2vw, 1.05rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: rgba(255,255,255,0.80);
+  margin: 0;
+}
+
+/* Scroll hint — bottom of stage, disappears immediately on scroll */
+.se-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.5rem;
+  text-align: center;
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(26,26,26,0.45);
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+/* White bloom bridge — fixed full-viewport cover.
+   Floods in while the canvas section rises over the outgoing packshot,
+   then dissolves over the first moments of the pinned pea canvas.
+   Sits above the canvas HUD (z 35), below header (10000) and loader (99999). */
+.se-bloom-bridge {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: #ffffff;
+  opacity: 0;
+  will-change: opacity;
+  z-index: 60;
+}

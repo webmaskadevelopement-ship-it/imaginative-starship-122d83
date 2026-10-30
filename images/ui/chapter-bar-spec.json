@@ -1,0 +1,42 @@
+{
+  "watermarkTelemetry": {
+    "target": "4-point diamond star (Gemini/Luma AI generation watermark)",
+    "frameResolution": "1920x1080",
+    "xRange": [1699, 1775],
+    "yRange": [864, 1024],
+    "width": 76,
+    "height": 160,
+    "centerX": 1737,
+    "centerY": 944,
+    "percentFromRight": [7.6, 11.5],
+    "percentFromBottom": [5.2, 20.0],
+    "presence": {
+      "shot1": true,
+      "bloom1": "diffused",
+      "shot2": true,
+      "shot3": true,
+      "shot4": true,
+      "bloom2": "diffused",
+      "shot5": true
+    }
+  },
+  "chapterOverlay": {
+    "elementId": "proteinChapterBar",
+    "elementClass": "protein-chapter-bar",
+    "positioning": {
+      "right": "clamp(24px, 4vw, 68px)",
+      "bottom": "clamp(28px, 4.5vh, 60px)",
+      "minWidth": "310px",
+      "height": "64px",
+      "borderRadius": "9999px",
+      "zIndex": 40
+    },
+    "styling": {
+      "surface": "rgba(13, 20, 15, 0.82)",
+      "backdropFilter": "blur(20px) saturate(190%)",
+      "border": "1px solid rgba(255, 255, 255, 0.15)",
+      "boxShadow": "0 16px 40px rgba(0, 0, 0, 0.40)"
+    },
+    "occlusionCoverage": "100% covers bounding box [X: 1699..1775, Y: 864..1024] at standard and responsive viewports"
+  }
+}
