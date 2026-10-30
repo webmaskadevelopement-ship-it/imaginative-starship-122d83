@@ -813,6 +813,25 @@ body.protein-page .footer {
     line-height: 1.02;
     letter-spacing: -0.01em;
   }
+
+  .editorial-chapter[data-chapter="6"] .direct-hero-title,
+  .editorial-chapter[data-chapter="1"] .direct-hero-title,
+  .one-line-title {
+    font-size: clamp(1.8rem, 8.2vw, 2.5rem) !important;
+    white-space: nowrap !important;
+    text-wrap: nowrap !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+  }
+}
+
+.editorial-chapter[data-chapter="6"] .direct-hero-title,
+.editorial-chapter[data-chapter="1"] .direct-hero-title,
+.one-line-title {
+  white-space: nowrap !important;
+  text-wrap: nowrap !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
 }
 
 /* ========================================================
